@@ -19,7 +19,6 @@ import {
 export const EmailNewsletter = () => (
   <StyledContainer>
     <StyledContent>
-      {/* TODO: apply mixin */}
       <Card
         style={{
           maxHeight: '652px',
