@@ -5,6 +5,10 @@ const nextConfig = {
       test: /\.svg$/i,
       use: ['@svgr/webpack'],
     });
+    config.watchOptions = {
+      poll: 1000,
+      aggregateTimeout: 300,
+    };
 
     return config;
   },
@@ -13,7 +17,9 @@ const nextConfig = {
   compiler: {
     styledComponents: true,
   },
+  experimental: {
+    serverActions: true,
+  },
 };
 
 module.exports = nextConfig;
-

@@ -1,0 +1,12 @@
+version: '3'
+
+services:
+  frontend:
+    build: ./
+    container_name: spa-frontend
+    restart: always
+    ports:
+      - '3000:3000'
+    volumes:
+      - /app/node_modules
+      - ./:/app
