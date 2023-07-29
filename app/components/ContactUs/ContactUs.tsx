@@ -22,7 +22,7 @@ export const ContactUs = () => (
       <StyledText>
         <Text>
           For customer service inquiries, please email us at{' '}
-          <Link href={''}>customerservice@luxeanimalspa.ca</Link>. For spa
+          <Link href={'./'}>customerservice@luxeanimalspa.ca</Link>. For spa
           inquiries, please include your animal’s name for faster service. For
           your protection, please do not include your credit card or banking
           information details in your email.

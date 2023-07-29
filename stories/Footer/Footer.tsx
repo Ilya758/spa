@@ -95,10 +95,10 @@ export const Footer = ({}: FooterProps) => {
         </StyledFooterBody>
         <StyledFooterInfo>
           <StyledFooterCookies>
-            <FooterLink color="charcoal" href={''}>
+            <FooterLink color="charcoal" href={'./'}>
               Cookie policy
             </FooterLink>
-            <FooterLink color="charcoal" href={''}>
+            <FooterLink color="charcoal" href={'./'}>
               Cookies Settings
             </FooterLink>
           </StyledFooterCookies>

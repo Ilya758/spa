@@ -39,11 +39,11 @@ export const SOCIAL_LIST_BUTTONS = [
   },
   {
     icon: <PinterestIcon height={29} width={27} />,
-    href: 'meta',
+    href: 'pinterest',
   },
   {
     icon: <TwitterIcon height={29} width={38} />,
-    href: 'meta',
+    href: 'twitter',
   },
   {
     icon: <SnapChatIcon height={29} width={38} />,

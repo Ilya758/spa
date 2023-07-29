@@ -26,8 +26,8 @@ export type ListProps = {
 export const List = ({ items }: ListProps) => {
   return (
     <StyledList>
-      {items.map(({ picSrc, price, text }) => (
-        <li key={text}>
+      {items.map(({ picSrc, price, text }, index) => (
+        <li key={`${text}-${index}`}>
           <Card
             style={{
               width: '423px',
