@@ -52,5 +52,5 @@ export const StyledText = styled.p<StyledTextProps>`
   line-height: 24px;
   letter-spacing: 0em;
   color: ${({ theme: { colors }, $color }) =>
-    $color ? colors[$color] : 'initial'};
+    $color ? colors[$color as keyof typeof colors] : 'initial'};
 `;
