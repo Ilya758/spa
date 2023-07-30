@@ -1,9 +1,24 @@
-import { styled } from 'styled-components';
+import { css, keyframes, styled } from 'styled-components';
 
 type StyledButtonProps = {
+  $loading?: boolean;
   $width?: number;
   $height?: number;
 };
+
+const Loading = keyframes`
+  0% {
+    opacity: 1;
+  }
+
+  50% {
+    opacity: 0.2;
+  }
+
+  100% {
+    opacity: 1;
+  }
+`;
 
 export const StyledButton = styled.button<StyledButtonProps>`
   width: ${({ $width }) => ($width ? `${$width}px` : 'initial')};
@@ -28,22 +43,33 @@ export const StyledButton = styled.button<StyledButtonProps>`
   cursor: pointer;
   border: 2px solid transparent;
 
-  &:hover {
-    color: ${({
-      theme: {
-        colors: { pink },
-      },
-    }) => pink};
-    background: initial;
-    border-color: ${({
-      theme: {
-        colors: { pink },
-      },
-    }) => pink};
-  }
+  ${({ $loading }) =>
+    !$loading &&
+    css`
+      &:hover {
+        color: ${({
+          theme: {
+            colors: { pink },
+          },
+        }) => pink};
+        background: initial;
+        border-color: ${({
+          theme: {
+            colors: { pink },
+          },
+        }) => pink};
+      }
 
-  &:active {
-    transform: translate(0, 2px);
-    opacity: 0.4;
-  }
+      &:active {
+        transform: translate(0, 2px);
+        opacity: 0.4;
+      }
+    `}
+
+  ${({ $loading }) =>
+    $loading &&
+    css`
+      animation: ${Loading} 1s infinite;
+      cursor: not-allowed;
+    `}
 `;

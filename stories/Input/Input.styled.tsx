@@ -1,23 +1,15 @@
-import { styled } from 'styled-components';
+import { css, styled } from 'styled-components';
 
 type StyledInputProps = {
-  /**
-   * Width of a textbox
-   */
+  $error?: string;
   $width?: number;
-
-  /**
-   * Height of a textbox
-   */
   $height?: number;
-
-  /**
-   * Border-color you want provide to
-   */
   $borderColor?: string;
 };
 
 export const StyledInput = styled.div<StyledInputProps>`
+  position: relative;
+
   input {
     width: ${({ $width }) => ($width ? `${$width}px` : 'initial')};
     height: ${({ $height }) => ($height ? `${$height}px` : 'initial')};
@@ -38,29 +30,50 @@ export const StyledInput = styled.div<StyledInputProps>`
     transition: 0.2s;
     position: relative;
 
-    &:hover {
-      border-color: transparent;
-      box-shadow: 0 0 10px 5px
-        ${({
-          theme: {
-            colors: { pink },
-          },
-        }) => pink};
-    }
+    ${({ $error }) =>
+      !$error
+        ? css`
+            &:hover {
+              border-color: transparent;
+              box-shadow: 0 0 10px 2px
+                ${({
+                  theme: {
+                    colors: { pink },
+                  },
+                }) => pink};
+            }
 
-    &:active {
-      transform: scale(0.98) translate(0, 1px);
-    }
+            &:active {
+              transform: scale(0.98) translate(0, 1px);
+            }
+
+            &:focus-visible {
+              box-shadow: 0 0 4px 2px
+                ${({
+                  theme: {
+                    colors: { pink },
+                  },
+                }) => pink};
+            }
+          `
+        : css`
+            box-shadow: 0 0 4px 2px #ff0000a8;
+            border-color: transparent;
+          `}
 
     &:focus-visible {
       border-color: transparent;
       outline: transparent;
-      box-shadow: 0 0 4px 2px
-        ${({
-          theme: {
-            colors: { pink },
-          },
-        }) => pink};
     }
+`;
+
+export const StyledError = styled.div`
+  position: absolute;
+  bottom: -25px;
+  left: 14px;
+
+  p {
+    color: red;
+    font-size: 14px;
   }
 `;

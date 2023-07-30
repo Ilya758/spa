@@ -8,6 +8,11 @@ export type ButtonProps = {
   children: React.ReactNode;
 
   /**
+   * Indicates that the button is in loading state
+   */
+  loading?: boolean;
+
+  /**
    * Width of a button
    */
   width?: number;
@@ -25,13 +30,20 @@ export type ButtonProps = {
 
 export const Button = ({
   children,
+  loading,
   height,
   width,
   onClick,
   ...props
 }: ButtonProps & React.ButtonHTMLAttributes<HTMLButtonElement>) => {
   return (
-    <StyledButton {...props} $height={height} $width={width} onClick={onClick}>
+    <StyledButton
+      {...props}
+      $loading={loading}
+      $height={height}
+      $width={width}
+      onClick={onClick}
+    >
       {children}
     </StyledButton>
   );

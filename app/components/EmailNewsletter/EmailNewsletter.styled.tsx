@@ -41,7 +41,7 @@ export const StyledEmailInputContainer = styled.div`
   margin-bottom: 33px;
 
   input {
-    width: 100%;
+    width: 100% !important;
   }
 `;
 
