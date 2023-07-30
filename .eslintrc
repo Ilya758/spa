@@ -23,6 +23,7 @@
     "no-console": "warn",
     "arrow-parens": "off",
     "comma-dangle": ["error", "only-multiline"],
+    "@typescript-eslint/comma-dangle": "off",
     "linebreak-style": "off",
     "react-hooks/rules-of-hooks": "error",
     "react-hooks/exhaustive-deps": "warn",
