@@ -1,6 +1,8 @@
+import { extractStyleColor } from '@/app/shared/extractStyleColor';
 import { css, styled } from 'styled-components';
 
 type StyledInputProps = {
+  $disabled?: boolean;
   $error?: string;
   $width?: number;
   $height?: number;
@@ -57,9 +59,16 @@ export const StyledInput = styled.div<StyledInputProps>`
             }
           `
         : css`
-            box-shadow: 0 0 4px 2px #ff0000a8;
+            box-shadow: 0 0 4px 2px ${extractStyleColor('error')};
             border-color: transparent;
           `}
+
+    ${({ $disabled }) =>
+      $disabled &&
+      css`
+        border-color: transparent;
+        cursor: not-allowed;
+      `}
 
     &:focus-visible {
       border-color: transparent;

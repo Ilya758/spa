@@ -1,11 +1,27 @@
 import { cormorantFont } from '@/app/shared/fonts';
-import { StyledTextArea } from './TextArea.styled';
+import { StyledError, StyledTextArea } from './TextArea.styled';
+import { Text } from '../Text/Text';
 
 export type TextAreaProps = {
   /**
    * Border-color you want provide to
    */
   borderColor?: string;
+
+  /**
+   * Disable all manipulation with control
+   */
+  disabled?: boolean;
+
+  /**
+   * Name of control
+   */
+  name?: string;
+
+  /**
+   * Error, representing current state of a control
+   */
+  error?: string;
 
   /**
    * Value you want provide to
@@ -43,8 +59,11 @@ export type TextAreaProps = {
  */
 export const TextArea = ({
   borderColor,
+  disabled,
+  error,
   height,
   placeholder,
+  name,
   resizable = false,
   value,
   width,
@@ -52,15 +71,26 @@ export const TextArea = ({
 }: TextAreaProps) => (
   <StyledTextArea
     $borderColor={borderColor}
+    $disabled={disabled}
+    $error={error}
     $height={height}
     $resizable={resizable}
     $width={width}
   >
-    <textarea
-      className={cormorantFont.className}
-      onChange={onChange}
-      placeholder={placeholder}
-      value={value}
-    />
+    <>
+      <textarea
+        className={cormorantFont.className}
+        disabled={disabled}
+        name={name}
+        onChange={onChange}
+        placeholder={placeholder}
+        value={value}
+      />
+      {error && (
+        <StyledError>
+          <Text>{error}</Text>
+        </StyledError>
+      )}
+    </>
   </StyledTextArea>
 );

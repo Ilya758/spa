@@ -11,5 +11,6 @@ export const DEFAULT_THEME: DefaultTheme = {
     borderColor: '#E0E0E0',
     secondary: '#959FA8',
     white: '#FFFFFF',
+    error: '#ff0000a8',
   },
 };

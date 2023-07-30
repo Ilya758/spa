@@ -105,6 +105,7 @@ export const EmailNewsletter = () => {
               <form ref={form} onSubmit={handleSubmit}>
                 <StyledEmailInputContainer>
                   <Input
+                    disabled={isSubmitting}
                     error={errors.email}
                     name="email"
                     onChange={handleChangeEmail}

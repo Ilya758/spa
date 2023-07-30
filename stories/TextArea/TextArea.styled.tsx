@@ -1,28 +1,18 @@
-import { styled } from 'styled-components';
+import { extractStyleColor } from '@/app/shared/extractStyleColor';
+import { css, styled } from 'styled-components';
 
 type StyledInputProps = {
-  /**
-   * Width of a textarea
-   */
+  $disabled?: boolean;
+  $error?: string;
   $width?: number;
-
-  /**
-   * Height of a textarea
-   */
   $height?: number;
-
-  /**
-   * Border-color you want provide to
-   */
   $borderColor?: string;
-
-  /**
-   * Specifies whether textarea can be resized
-   */
   $resizable?: boolean;
 };
 
 export const StyledTextArea = styled.div<StyledInputProps>`
+  position: relative;
+
   textarea {
     position: relative;
     width: ${({ $width }) => ($width ? `${$width}px` : 'initial')};
@@ -55,19 +45,58 @@ export const StyledTextArea = styled.div<StyledInputProps>`
         }) => pink};
     }
 
-    &:active {
-      transform: scale(0.98) translate(0, 1px);
-    }
+    ${({ $error }) =>
+      !$error
+        ? css`
+            &:hover {
+              border-color: transparent;
+              box-shadow: 0 0 10px 2px
+                ${({
+                  theme: {
+                    colors: { pink },
+                  },
+                }) => pink};
+            }
+
+            &:active {
+              transform: scale(0.98) translate(0, 1px);
+            }
+
+            &:focus-visible {
+              box-shadow: 0 0 4px 2px
+                ${({
+                  theme: {
+                    colors: { pink },
+                  },
+                }) => pink};
+            }
+          `
+        : css`
+            box-shadow: 0 0 4px 2px ${extractStyleColor('error')};
+            border-color: transparent;
+          `}
+
+    ${({ $disabled }) =>
+      $disabled &&
+      css`
+        border-color: transparent;
+        cursor: not-allowed;
+      `}
 
     &:focus-visible {
       border-color: transparent;
       outline: transparent;
-      box-shadow: 0 0 4px 2px
-        ${({
-          theme: {
-            colors: { pink },
-          },
-        }) => pink};
     }
+  }
+`;
+
+export const StyledError = styled.div`
+  position: absolute;
+  bottom: -25px;
+  left: 14px;
+
+  p {
+    color: red;
+    font-size: 14px;
   }
 `;

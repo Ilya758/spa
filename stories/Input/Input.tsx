@@ -10,6 +10,11 @@ export type InputProps = {
   borderColor?: string;
 
   /**
+   * Disable all manipulation with control
+   */
+  disabled?: boolean;
+
+  /**
    * Error, representing current state of a control
    */
   error?: string;
@@ -55,6 +60,7 @@ export type InputProps = {
  */
 export const Input = ({
   borderColor,
+  disabled,
   error,
   height,
   placeholder,
@@ -66,15 +72,17 @@ export const Input = ({
 }: InputProps) => (
   <StyledInput
     $error={error}
+    $disabled={disabled}
     $borderColor={borderColor}
     $height={height}
     $width={width}
   >
     <input
+      disabled={disabled}
       name={name}
       type={type}
       className={cormorantFont.className}
-      onChange={onChange}
+      onChange={!disabled ? onChange : () => {}}
       placeholder={placeholder}
       value={value}
     />

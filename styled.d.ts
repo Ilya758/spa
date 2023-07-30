@@ -12,6 +12,7 @@ declare module 'styled-components' {
       borderColor: string;
       secondary: string;
       white: string;
+      error: string;
     }
   }
 }
