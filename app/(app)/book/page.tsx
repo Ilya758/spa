@@ -3,8 +3,7 @@
 import React from 'react';
 import { BookBanner } from '@/app/components/BookBanner';
 import { BookForm } from '@/app/components/BookForm';
-import { StyledPage } from '../page.styled';
-import { StyledPageContent } from './page.styled';
+import { StyledPage, StyledPageContent } from './page.styled';
 
 const Page = () => (
   <StyledPage>

@@ -2,8 +2,7 @@
 
 import React from 'react';
 import { DogInfoPage } from '@/app/components/DogInfoPage';
-import { StyledPage } from '../page.styled';
-import { StyledPageContent } from './page.styled';
+import { StyledPage, StyledPageContent } from './page.styled';
 
 const Page = () => (
   <StyledPage>

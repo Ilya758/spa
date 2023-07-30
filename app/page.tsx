@@ -1,5 +1,3 @@
-'use client';
+const Page = () => <></>;
 
-export default function Home() {
-  return <></>;
-}
+export default Page;

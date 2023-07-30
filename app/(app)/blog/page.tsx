@@ -2,8 +2,8 @@
 
 import React from 'react';
 import { InfoPage } from '@/app/components/InfoPage';
-import { StyledPage } from '../page.styled';
-import { StyledPageContent } from './page.styled';
+import { StyledPage, StyledPageContent } from './page.styled';
+
 import { BLOG_ITEMS } from './constants';
 
 const Page = () => (
