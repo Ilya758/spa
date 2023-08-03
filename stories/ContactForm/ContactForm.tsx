@@ -10,30 +10,22 @@ import { Input } from '../Input';
 import { TextArea } from '../TextArea';
 import { Button } from '../Button';
 import { Text } from '../Text';
-import { useForm } from '@/app/shared/hooks/useForm';
+import { useForm } from '@/app/shared/hooks';
 import { CONTACT_FORM_SCHEMA, INITIAL_FORM_STATE } from './constants';
-import { ValidationError } from 'yup';
-import emailjs from '@emailjs/browser';
-import { parseErrors } from './helpers';
+import { EmailService } from '@/app/shared/services';
+import { IContactFormSchema } from './models';
 
 /**
  * Form for "contact-us" page
  */
 export const ContactForm = () => {
-  const {
-    errors,
-    fields,
-    isSubmitting,
-    handleChangeIsSuccess,
-    handleChangeValue,
-    handleSetError,
-    handleToggleIsSubmitting,
-  } = useForm(INITIAL_FORM_STATE);
+  const { errors, fields, isSubmitting, handleChangeValue, handleSubmitForm } =
+    useForm<IContactFormSchema>(INITIAL_FORM_STATE);
   const { email, firstName, lastName, phone, message } = fields;
   const form = useRef<HTMLFormElement>(null);
 
   const handleChangeInputValue =
-    (key: string) =>
+    (key: keyof IContactFormSchema) =>
     ({
       target: { value },
     }: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>): void => {
@@ -44,43 +36,15 @@ export const ContactForm = () => {
     event: React.FormEvent<HTMLFormElement>
   ): Promise<void> => {
     event.preventDefault();
-    handleToggleIsSubmitting();
-
-    try {
-      await CONTACT_FORM_SCHEMA.validate(
-        {
-          email,
-          firstName,
-          lastName,
-          phone,
-          message,
-        },
-        { abortEarly: false }
-      );
-
-      if (form.current) {
-        await emailjs.sendForm(
-          process.env.NEXT_PUBLIC_EMAIL_REGISTRATION_SERVICE,
-          process.env.NEXT_PUBLIC_CONTACT_US_FORM_TEMPLATE,
-          form.current,
-          process.env.NEXT_PUBLIC_API_KEY
-        );
-      }
-
-      handleChangeIsSuccess(true);
-    } catch (error) {
-      if (error instanceof ValidationError) {
-        const errors = parseErrors(error.errors);
-
-        for (const error in errors) {
-          handleSetError(error, errors[error]);
+    handleSubmitForm({
+      fields,
+      validationSchema: CONTACT_FORM_SCHEMA,
+      onSuccess: async () => {
+        if (form.current) {
+          await EmailService.sendEmail(form.current, 'contact_form');
         }
-      } else {
-        alert('Error while send form');
-      }
-    }
-
-    handleToggleIsSubmitting();
+      },
+    });
   };
 
   return (

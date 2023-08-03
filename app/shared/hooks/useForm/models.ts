@@ -1,6 +1,15 @@
-export type TBaseForm = {
+import { ObjectSchema } from 'yup';
+import { InferredFromGeneric } from '../../models';
+
+export type BaseForm<T> = {
   isSubmitting: boolean;
   isSuccess: boolean;
-  errors: Record<string, string>;
-  fields: Record<string, string>;
+  errors: InferredFromGeneric<T>;
+  fields: InferredFromGeneric<T>;
+};
+
+export type FormSubmitConfig<T> = {
+  fields: InferredFromGeneric<T>;
+  validationSchema: ObjectSchema<InferredFromGeneric<T>>;
+  onSuccess?: () => void;
 };

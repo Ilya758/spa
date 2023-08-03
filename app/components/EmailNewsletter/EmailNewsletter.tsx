@@ -9,9 +9,7 @@ import { Input } from '@/stories/Input';
 import { Button } from '@/stories/Button';
 import Image from 'next/image';
 import { useRef } from 'react';
-import emailjs from '@emailjs/browser';
-import { ValidationError } from 'yup';
-import { useForm } from '@/app/shared/hooks/useForm';
+import { useForm } from '@/app/shared/hooks';
 import {
   StyledActionContainer,
   StyledCardContent,
@@ -25,59 +23,34 @@ import {
   StyledPictureContainer,
 } from './EmailNewsletter.styled';
 import { EMAIL_SCHEMA, INITIAL_FORM_STATE } from './constants';
+import { EmailService } from '@/app/shared/services';
+import { IEmailNewsletterSchema } from './models';
 
 export const EmailNewsletter = () => {
-  const {
-    errors,
-    fields: { email },
-    isSubmitting,
-    handleSetError,
-    handleChangeValue,
-    handleToggleIsSubmitting,
-    handleChangeIsSuccess,
-  } = useForm(INITIAL_FORM_STATE);
+  const { errors, fields, isSubmitting, handleChangeValue, handleSubmitForm } =
+    useForm<IEmailNewsletterSchema>(INITIAL_FORM_STATE);
+  const { email } = fields;
+  const form = useRef<HTMLFormElement>(null);
+
   const handleChangeEmail = ({
     target: { value },
   }: React.ChangeEvent<HTMLInputElement>): void => {
     handleChangeValue('email', value);
   };
 
-  const form = useRef<HTMLFormElement>(null);
-
   const handleSubmit = async (
     event: React.FormEvent<HTMLFormElement>
   ): Promise<void> => {
     event.preventDefault();
-    handleToggleIsSubmitting();
-
-    try {
-      await EMAIL_SCHEMA.validate(
-        {
-          email,
-        },
-        { abortEarly: false }
-      );
-
-      if (form.current) {
-        await emailjs.sendForm(
-          process.env.NEXT_PUBLIC_EMAIL_REGISTRATION_SERVICE,
-          process.env.NEXT_PUBLIC_EMAIL_REGISTRATION_TEMPLATE,
-          form.current,
-          process.env.NEXT_PUBLIC_API_KEY
-        );
-      }
-
-      handleChangeIsSuccess(true);
-    } catch (error) {
-      if (error instanceof ValidationError) {
-        const [emailError] = error.errors;
-        handleSetError('email', emailError);
-      } else {
-        alert('Error while send form');
-      }
-    }
-
-    handleToggleIsSubmitting();
+    handleSubmitForm({
+      validationSchema: EMAIL_SCHEMA,
+      fields,
+      onSuccess: async () => {
+        if (form.current) {
+          await EmailService.sendEmail(form.current, 'registration');
+        }
+      },
+    });
   };
 
   return (

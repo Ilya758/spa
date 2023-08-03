@@ -1,5 +1,6 @@
-import { TBaseForm } from '@/app/shared/hooks/useForm/models';
+import { BaseForm } from '@/app/shared/hooks/useForm/models';
 import * as yup from 'yup';
+import { IEmailNewsletterSchema } from './models';
 
 export const EMAIL_SCHEMA = yup.object({
   email: yup
@@ -8,7 +9,7 @@ export const EMAIL_SCHEMA = yup.object({
     .email('Email must be valid'),
 });
 
-export const INITIAL_FORM_STATE: TBaseForm = {
+export const INITIAL_FORM_STATE: BaseForm<IEmailNewsletterSchema> = {
   errors: {
     email: '',
   },
