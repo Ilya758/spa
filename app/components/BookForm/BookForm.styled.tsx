@@ -58,9 +58,8 @@ export const StyledCheckboxesList = styled.ul<{
   padding: 8px;
   transition: 0.3s;
 
-  ${({ $error }) =>
-    $error &&
-    css`
+  ${({ $error }) => $error
+    && css`
       box-shadow: 0 0 4px 2px #ff0000a8;
     `}
 `;

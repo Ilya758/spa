@@ -14,7 +14,8 @@ export const parseErrors = <T>(errors: string[]) => {
   const regex = Object.values(FormErrorKey).join('|');
   const errorMap = {} as InferredFromGeneric<T>;
 
-  for (const errorMessage of errors) {
+  for (let i = 0; i < errors.length; i += 1) {
+    const errorMessage = errors[i];
     const match = errorMessage.match(new RegExp(regex, 'gi'));
 
     if (match) {

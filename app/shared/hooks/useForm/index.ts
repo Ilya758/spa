@@ -1,8 +1,8 @@
 /* eslint-disable no-alert */
 import { useEffect, useState } from 'react';
-import { BaseForm, FormSubmitConfig } from './models';
 import * as yup from 'yup';
 import { parseErrors } from '@/app/shared/utils';
+import { BaseForm, FormSubmitConfig } from './models';
 
 export const useForm = <T>(initialState: BaseForm<T>) => {
   const [state, setState] = useState(initialState);
@@ -69,7 +69,7 @@ export const useForm = <T>(initialState: BaseForm<T>) => {
     }));
   };
 
-  const handleSubmitForm = async <T>({
+  const handleSubmitForm = async ({
     fields,
     validationSchema,
     onSuccess,
@@ -88,7 +88,7 @@ export const useForm = <T>(initialState: BaseForm<T>) => {
           string
         >;
 
-        Object.entries(errors).map(([key, value]) => {
+        Object.entries(errors).forEach(([key, value]) => {
           handleSetError(<Extract<keyof T, never>>key, <string>value);
         });
       } else {

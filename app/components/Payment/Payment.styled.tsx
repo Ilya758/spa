@@ -1,4 +1,4 @@
-import { extractStyleColor } from '@/app/shared/extractStyleColor';
+import { extractStyleColor } from '@/app/shared/utils';
 import { styled } from 'styled-components';
 
 export const StyledContainer = styled.div`
@@ -56,14 +56,5 @@ export const StyledTipText = styled.div`
     font-size: 16px;
     font-weight: 400;
     line-height: 19px;
-  }
-`;
-
-export const StyledButtonContainer = styled.div`
-  text-align: center;
-
-  button {
-    width: 100%;
-    max-width: 318px;
   }
 `;

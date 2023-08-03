@@ -9,6 +9,10 @@ import { Card } from '@/stories/Card/Card';
 import { Enumeration } from '@/stories/Enumeration';
 import { DatePicker } from '@/stories/DatePicker';
 import { useForm } from '@/app/shared/hooks';
+import { Button } from '@/stories/Button';
+import { Modal } from '@/stories/Modal/Modal';
+import { useState } from 'react';
+import { PayPalButtons } from '@paypal/react-paypal-js';
 import {
   StyledAddressContainer,
   StyledButtonContainer,
@@ -27,12 +31,8 @@ import {
   StyledTextAreaContainer,
 } from './BookForm.styled';
 import { BOOK_FORM_SCHEMA, BOOK_TIMES, INITIAL_FORM_STATE } from './constants';
-import { Button } from '@/stories/Button';
-import { Modal } from '@/stories/Modal/Modal';
-import { useState } from 'react';
 import { BookFormResult } from './BookFormResult';
 import { IBookFormSchema } from './models';
-import { PayPalButtons } from '@paypal/react-paypal-js';
 
 export const BookForm = () => {
   const [showModal, setShowModal] = useState(false);
@@ -43,20 +43,19 @@ export const BookForm = () => {
     handleToggleCheckbox,
     handleSubmitForm,
   } = useForm<IBookFormSchema>(INITIAL_FORM_STATE);
-  const { email, firstName, lastName, phone, message } = fields;
+  const {
+    email, firstName, lastName, phone, message
+  } = fields;
 
-  const handleToggleCheckboxTime =
-    (name: keyof IBookFormSchema, id: string) => (): void => {
-      handleToggleCheckbox(name, id);
-    };
+  const handleToggleCheckboxTime = (name: keyof IBookFormSchema, id: string) => (): void => {
+    handleToggleCheckbox(name, id);
+  };
 
-  const handleChangeInputValue =
-    (key: keyof IBookFormSchema) =>
-    ({
-      target: { value },
-    }: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>): void => {
-      handleChangeValue(key, value);
-    };
+  const handleChangeInputValue = (key: keyof IBookFormSchema) => ({
+    target: { value },
+  }: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>): void => {
+    handleChangeValue(key, value);
+  };
 
   const handleChangeDatePickerDate = (date: string): void => {
     handleChangeValue('date', date);

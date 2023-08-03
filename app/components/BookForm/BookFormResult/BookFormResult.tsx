@@ -1,4 +1,7 @@
 import { InferredFromGeneric } from '@/app/shared/models';
+import { Text } from '@/stories/Text';
+import { Button } from '@/stories/Button';
+import { LocalStorageService } from '@/app/shared/services';
 import { IBookFormSchema } from '../models';
 import {
   StyledConfirmationButtonContainer,
@@ -8,10 +11,7 @@ import {
   StyledList,
   StyledListItem,
 } from './BookFormResult.styled';
-import { Text } from '@/stories/Text';
-import { Button } from '@/stories/Button';
 import { BOOK_TIMES } from '../constants';
-import { LocalStorageService } from '@/app/shared/services';
 
 type Props = {
   onConfirm: () => void;
@@ -38,9 +38,9 @@ export const BookFormResult = ({ items, onConfirm }: Props) => {
                   {key.toLowerCase()}:{' '}
                   {key === 'time'
                     ? value
-                        .split('')
-                        .map(t => BOOK_TIMES.find(({ id }) => id === +t)?.text)
-                        .join(', ')
+                      .split('')
+                      .map(t => BOOK_TIMES.find(({ id }) => id === +t)?.text)
+                      .join(', ')
                     : value}
                 </Text>
               )}

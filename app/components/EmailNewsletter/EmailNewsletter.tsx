@@ -10,6 +10,7 @@ import { Button } from '@/stories/Button';
 import Image from 'next/image';
 import { useRef } from 'react';
 import { useForm } from '@/app/shared/hooks';
+import { EmailService } from '@/app/shared/services';
 import {
   StyledActionContainer,
   StyledCardContent,
@@ -23,12 +24,12 @@ import {
   StyledPictureContainer,
 } from './EmailNewsletter.styled';
 import { EMAIL_SCHEMA, INITIAL_FORM_STATE } from './constants';
-import { EmailService } from '@/app/shared/services';
 import { IEmailNewsletterSchema } from './models';
 
 export const EmailNewsletter = () => {
-  const { errors, fields, isSubmitting, handleChangeValue, handleSubmitForm } =
-    useForm<IEmailNewsletterSchema>(INITIAL_FORM_STATE);
+  const {
+    errors, fields, isSubmitting, handleChangeValue, handleSubmitForm
+  } = useForm<IEmailNewsletterSchema>(INITIAL_FORM_STATE);
   const { email } = fields;
   const form = useRef<HTMLFormElement>(null);
 
