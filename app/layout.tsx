@@ -10,7 +10,10 @@ export const metadata = {
 const RootLayout = ({ children }: BaseLayoutProps) => (
   <html lang="en">
     <body>
-      <StyledComponentsRegistry>{children}</StyledComponentsRegistry>
+      <StyledComponentsRegistry>
+        {children}
+        <div id="modal-root" />
+      </StyledComponentsRegistry>
     </body>
   </html>
 );

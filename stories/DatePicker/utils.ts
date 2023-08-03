@@ -1,11 +1,18 @@
 import { DatePickerCellType } from './constants';
 import { DatePickerCell } from './models';
 
-export const parseDate = (date: Date): string =>
-  date.toLocaleDateString('en', {
-    month: 'long',
+export const parseDate = (date: Date, withDay = false): string => {
+  const options: Intl.DateTimeFormatOptions = {
     year: 'numeric',
-  });
+    month: 'long',
+  };
+
+  if (withDay) {
+    options.day = 'numeric';
+  }
+
+  return date.toLocaleDateString('en', options);
+};
 
 const getDateQueues = (firstDay: number, lastDay: number, daysCount = 7) => ({
   startQueue: Array(daysCount).fill(0),

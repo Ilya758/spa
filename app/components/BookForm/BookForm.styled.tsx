@@ -1,4 +1,4 @@
-import { styled } from 'styled-components';
+import { css, styled } from 'styled-components';
 
 export const StyledContainer = styled.div``;
 
@@ -36,10 +36,33 @@ export const StyledDateTimeText = styled.div`
   }
 `;
 
-export const StyledCheckboxesList = styled.ul`
+export const StyledError = styled.div`
+  position: absolute;
+  bottom: -25px;
+  left: 14px;
+
+  p {
+    color: red;
+    font-size: 14px;
+  }
+`;
+
+export const StyledCheckboxesList = styled.ul<{
+  $error?: string;
+}>`
+  position: relative;
   display: flex;
   flex-direction: column;
   row-gap: 16px;
+  border-radius: 4px;
+  padding: 8px;
+  transition: 0.3s;
+
+  ${({ $error }) =>
+    $error &&
+    css`
+      box-shadow: 0 0 4px 2px #ff0000a8;
+    `}
 `;
 
 export const StyledCheckboxContainer = styled.div`
@@ -71,4 +94,13 @@ export const StyledInfoContainer = styled.div`
 export const StyledAddressContainer = styled.div`
   max-width: 151px;
   width: 100%;
+`;
+
+export const StyledButtonContainer = styled.div`
+  text-align: center;
+
+  button {
+    width: 100%;
+    max-width: 318px;
+  }
 `;

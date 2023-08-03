@@ -8,6 +8,13 @@ export type CheckboxProps = {
    */
   checked?: boolean;
 
+  value?: string;
+
+  /**
+   * Name of control
+   */
+  name?: string;
+
   /**
    * Optional onChange event-handler
    */
@@ -26,14 +33,19 @@ export const Checkbox = ({ onChange, ...props }: CheckboxProps) => {
   ): void => {
     if (onChange) {
       onChange(event);
-    } else {
-      setChecked(!checked);
     }
+
+    setChecked(!checked);
   };
 
   return (
     <StyledCheckbox $checked={isCheckboxChecked}>
-      <input onChange={onCheckboxChange} type="checkbox" {...props} />
+      <input
+        value={props.value}
+        onChange={onCheckboxChange}
+        type="checkbox"
+        {...props}
+      />
       {isCheckboxChecked && (
         <StyledCheckboxCheckedIcon>
           <CheckedIcon />

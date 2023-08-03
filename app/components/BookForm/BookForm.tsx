@@ -7,13 +7,17 @@ import { Label } from '@/stories/Label/Label';
 import { TextArea } from '@/stories/TextArea';
 import { Card } from '@/stories/Card/Card';
 import { Enumeration } from '@/stories/Enumeration';
+import { DatePicker } from '@/stories/DatePicker';
+import { useForm } from '@/app/shared/hooks';
 import {
   StyledAddressContainer,
+  StyledButtonContainer,
   StyledCheckboxContainer,
   StyledCheckboxesList,
   StyledContainer,
   StyledContent,
   StyledDateTimeText,
+  StyledError,
   StyledForm,
   StyledFormContainer,
   StyledHeading,
@@ -22,105 +26,203 @@ import {
   StyledLabelTextContainer,
   StyledTextAreaContainer,
 } from './BookForm.styled';
-import { BOOK_TIMES } from './constants';
-import { Payment } from '../Payment';
+import { BOOK_FORM_SCHEMA, BOOK_TIMES, INITIAL_FORM_STATE } from './constants';
+import { Button } from '@/stories/Button';
+import { Modal } from '@/stories/Modal/Modal';
+import { useState } from 'react';
+import { BookFormResult } from './BookFormResult';
+import { IBookFormSchema } from './models';
+import { PayPalButtons } from '@paypal/react-paypal-js';
 
-export const BookForm = () => (
-  <StyledContainer>
-    <StyledContent>
-      <StyledForm>
-        <StyledHeading>
-          <Text>Enter your information here</Text>
-        </StyledHeading>
+export const BookForm = () => {
+  const [showModal, setShowModal] = useState(false);
+  const {
+    errors,
+    fields,
+    handleChangeValue,
+    handleToggleCheckbox,
+    handleSubmitForm,
+  } = useForm<IBookFormSchema>(INITIAL_FORM_STATE);
+  const { email, firstName, lastName, phone, message } = fields;
 
-        <Row gutter={[0, 150]}>
-          <Col span={16}>
-            <StyledFormContainer>
-              <Row gutter={[43, 60]}>
-                <Col span={12}>
-                  <StyledInputContainer>
-                    <Input placeholder="First name" />
-                  </StyledInputContainer>
-                </Col>
-                <Col span={12}>
-                  <StyledInputContainer>
-                    <Input placeholder="Last name" />
-                  </StyledInputContainer>
-                </Col>
-                <Col span={12}>
-                  <StyledInputContainer>
-                    <Input type="email" placeholder="Email" />
-                  </StyledInputContainer>
-                </Col>
-                <Col span={12}>
-                  <StyledInputContainer>
-                    <Input placeholder="Phone number" />
-                  </StyledInputContainer>
-                </Col>
+  const handleToggleCheckboxTime =
+    (name: keyof IBookFormSchema, id: string) => (): void => {
+      handleToggleCheckbox(name, id);
+    };
 
-                <Col span={12}>
-                  <StyledDateTimeText>
-                    <Text>Choose a timeslot on Dec. 11th, 2021:</Text>
-                  </StyledDateTimeText>
+  const handleChangeInputValue =
+    (key: keyof IBookFormSchema) =>
+    ({
+      target: { value },
+    }: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>): void => {
+      handleChangeValue(key, value);
+    };
 
-                  <StyledCheckboxesList>
-                    {BOOK_TIMES.map(({ id, text }) => (
-                      <li key={id}>
-                        <Label>
-                          <StyledCheckboxContainer>
-                            <Checkbox />
-                          </StyledCheckboxContainer>
-                          <StyledLabelTextContainer>
-                            <Text>{text}</Text>
-                          </StyledLabelTextContainer>
-                        </Label>
-                      </li>
-                    ))}
-                  </StyledCheckboxesList>
-                </Col>
-                <Col span={12}>{/* <DatePicker /> */}</Col>
-              </Row>
-            </StyledFormContainer>
-          </Col>
-          <Col span={8}>
-            <Card>1</Card>
-            <StyledInfoContainer>
-              <StyledAddressContainer>
+  const handleChangeDatePickerDate = (date: string): void => {
+    handleChangeValue('date', date);
+  };
+
+  const handleToggleModal = (show: boolean) => (): void => {
+    setShowModal(show);
+  };
+
+  const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
+    event.preventDefault();
+    handleSubmitForm({
+      validationSchema: BOOK_FORM_SCHEMA,
+      fields,
+      onSuccess: handleToggleModal(true),
+    });
+  };
+
+  return (
+    <StyledContainer>
+      <Modal showModal={showModal} onClose={handleToggleModal(false)}>
+        <BookFormResult onConfirm={handleToggleModal(false)} items={fields} />
+      </Modal>
+      <StyledContent>
+        <StyledForm noValidate onSubmit={handleSubmit}>
+          <StyledHeading>
+            <Text>Enter your information here</Text>
+          </StyledHeading>
+          <Row gutter={[0, 150]}>
+            <Col span={16}>
+              <StyledFormContainer>
+                <Row gutter={[43, 60]}>
+                  <Col span={12}>
+                    <StyledInputContainer>
+                      <Input
+                        error={errors.firstName}
+                        name="firstName"
+                        onChange={handleChangeInputValue('firstName')}
+                        placeholder="First name"
+                        value={firstName}
+                      />
+                    </StyledInputContainer>
+                  </Col>
+                  <Col span={12}>
+                    <StyledInputContainer>
+                      <Input
+                        error={errors.lastName}
+                        name="lastName"
+                        onChange={handleChangeInputValue('lastName')}
+                        placeholder="Last name"
+                        value={lastName}
+                      />
+                    </StyledInputContainer>
+                  </Col>
+                  <Col span={12}>
+                    <StyledInputContainer>
+                      <Input
+                        error={errors.email}
+                        name="email"
+                        onChange={handleChangeInputValue('email')}
+                        type="email"
+                        placeholder="Email"
+                        value={email}
+                      />
+                    </StyledInputContainer>
+                  </Col>
+                  <Col span={12}>
+                    <StyledInputContainer>
+                      <Input
+                        error={errors.phone}
+                        name="phone"
+                        onChange={handleChangeInputValue('phone')}
+                        placeholder="Phone number"
+                        value={phone}
+                      />
+                    </StyledInputContainer>
+                  </Col>
+
+                  <Col span={12}>
+                    <StyledDateTimeText>
+                      <Text>Choose a timeslot on Dec. 11th, 2021:</Text>
+                    </StyledDateTimeText>
+
+                    <StyledCheckboxesList $error={errors.time}>
+                      {BOOK_TIMES.map(({ id, text }) => (
+                        <li key={id}>
+                          <Label>
+                            <StyledCheckboxContainer>
+                              <Checkbox
+                                onChange={handleToggleCheckboxTime(
+                                  'time',
+                                  String(id)
+                                )}
+                                name="time"
+                              />
+                            </StyledCheckboxContainer>
+                            <StyledLabelTextContainer>
+                              <Text>{text}</Text>
+                            </StyledLabelTextContainer>
+                          </Label>
+                        </li>
+                      ))}
+                      {errors.time && (
+                        <StyledError>
+                          <Text>{errors.time}</Text>
+                        </StyledError>
+                      )}
+                    </StyledCheckboxesList>
+                  </Col>
+                  <Col span={12}>
+                    <DatePicker
+                      error={errors.date}
+                      onChange={handleChangeDatePickerDate}
+                    />
+                  </Col>
+                </Row>
+              </StyledFormContainer>
+            </Col>
+            <Col span={8}>
+              <Card>1</Card>
+              <StyledInfoContainer>
+                <StyledAddressContainer>
+                  <Enumeration
+                    heading="Our Address"
+                    items={[
+                      'Luxe Animal Spa 80 Smithe St Vancouver, BC V6B 1M7',
+                    ]}
+                  />
+                </StyledAddressContainer>
+
                 <Enumeration
-                  heading="Our Address"
-                  items={['Luxe Animal Spa 80 Smithe St Vancouver, BC V6B 1M7']}
+                  heading="Hours of Operation"
+                  items={[
+                    'Sunday - Closed',
+                    'Monday 10 a.m.-5:30 p.m.',
+                    'Tuesday 10 a.m.-5:30 p.m.',
+                    'Wednesday 10 a.m.-5:30 p.m.',
+                    'Thursday 10 a.m.-5:30 p.m.',
+                    'Friday 10 a.m.-5:30 p.m.',
+                    'Saturday 10 a.m.-5:30 p.m.',
+                  ]}
                 />
-              </StyledAddressContainer>
+              </StyledInfoContainer>
+            </Col>
 
-              <Enumeration
-                heading="Hours of Operation"
-                items={[
-                  'Sunday - Closed',
-                  'Monday 10 a.m.-5:30 p.m.',
-                  'Tuesday 10 a.m.-5:30 p.m.',
-                  'Wednesday 10 a.m.-5:30 p.m.',
-                  'Thursday 10 a.m.-5:30 p.m.',
-                  'Friday 10 a.m.-5:30 p.m.',
-                  'Saturday 10 a.m.-5:30 p.m.',
-                ]}
-              />
-            </StyledInfoContainer>
-          </Col>
-
-          <Col span={16}>
-            <StyledTextAreaContainer>
-              <TextArea
-                height={80}
-                placeholder="Any special requests for your pet(s)..."
-              />
-            </StyledTextAreaContainer>
-          </Col>
-
-          <Col span={16}>
-            <Payment />
-          </Col>
-        </Row>
-      </StyledForm>
-    </StyledContent>
-  </StyledContainer>
-);
+            <Col span={16}>
+              <StyledTextAreaContainer>
+                <TextArea
+                  error={errors.message}
+                  name="message"
+                  height={80}
+                  onChange={handleChangeInputValue('message')}
+                  placeholder="Any special requests for your pet(s)..."
+                  value={message}
+                />
+              </StyledTextAreaContainer>
+            </Col>
+            <Col span={16}>
+              <StyledButtonContainer>
+                <PayPalButtons style={{ layout: 'horizontal' }} />
+                <Button type="submit">Book Appointment</Button>
+              </StyledButtonContainer>
+            </Col>
+          </Row>
+        </StyledForm>
+      </StyledContent>
+    </StyledContainer>
+  );
+};

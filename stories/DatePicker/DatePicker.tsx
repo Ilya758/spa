@@ -4,33 +4,64 @@ import {
   StyledDatePickerContainer,
   StyledDatePickerControls,
   StyledDatePickerTable,
+  StyledError,
 } from './DatePicker.styled';
 import { Text } from '../Text';
-import { useState } from 'react';
 import { IconButton } from '../IconButton';
 import Prev from '@/public/svg/prev.svg';
 import Next from '@/public/svg/next.svg';
 import { createDatePickerGrid, parseDate } from './utils';
 import { DAYS, DatePickerCellType } from './constants';
+import { useDatePicker } from './hooks/useDatePicker';
 
-export type DatePickerProps = {};
+export type DatePickerProps = {
+  /**
+   * Error, representing current state of a control
+   */
+  error?: string;
+
+  /**
+   * Optional onChange event-handler
+   */
+  onChange?: (date: string) => void;
+};
 
 /**
  * Basic datepicker for choosing date
  */
-export const DatePicker = () => {
-  const [date, setDate] = useState(new Date());
+export const DatePicker = ({ error, onChange }: DatePickerProps) => {
+  const { date, selectedDay, updateState } = useDatePicker();
 
-  const handleChangeDate = (type: DatePickerCellType) => (): void => {
-    if (type !== DatePickerCellType.Cur) {
+  const handleChangeDate =
+    (type: DatePickerCellType, value = 0) =>
+    (): void => {
       const newDate = new Date(date);
-      newDate.setMonth(newDate.getMonth() + type);
-      setDate(newDate);
-    }
-  };
+
+      if (type === DatePickerCellType.Cur) {
+        if (onChange) {
+          newDate.setDate(value);
+
+          updateState({
+            date: newDate,
+            selectedDay: value,
+          });
+
+          onChange(parseDate(newDate, true));
+        }
+      } else {
+        newDate.setMonth(newDate.getMonth() + type);
+
+        updateState({
+          date: newDate,
+          selectedDay: 0,
+        });
+
+        if (onChange) onChange('');
+      }
+    };
 
   return (
-    <StyledDatePickerContainer>
+    <StyledDatePickerContainer $error={error}>
       <StyledDatePickerControls>
         <Text>Select dates</Text>
 
@@ -58,15 +89,27 @@ export const DatePicker = () => {
         <tbody>
           {createDatePickerGrid(date).map((week, index) => (
             <tr key={week.join(',') + index}>
-              {week.map(({ type, value }) => (
-                <StyledDatePickerCell $type={type}>
-                  <div onClick={handleChangeDate(type)}>{value}</div>
+              {week.map(({ type, value }, ndx) => (
+                <StyledDatePickerCell
+                  key={week.join(',') + index + ndx}
+                  $selected={
+                    selectedDay === value && type === DatePickerCellType.Cur
+                  }
+                  $type={type}
+                >
+                  <div onClick={handleChangeDate(type, value)}>{value}</div>
                 </StyledDatePickerCell>
               ))}
             </tr>
           ))}
         </tbody>
       </StyledDatePickerTable>
+
+      {error && (
+        <StyledError>
+          <Text>{error}</Text>
+        </StyledError>
+      )}
     </StyledDatePickerContainer>
   );
 };
