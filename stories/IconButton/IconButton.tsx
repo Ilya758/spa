@@ -33,7 +33,12 @@ export const IconButton = ({
   onClick,
 }: IconButtonProps) => {
   return (
-    <StyledIconButton onClick={onClick} $height={height} $width={width}>
+    <StyledIconButton
+      onClick={onClick}
+      $height={height}
+      $width={width}
+      type="button"
+    >
       {icon}
     </StyledIconButton>
   );

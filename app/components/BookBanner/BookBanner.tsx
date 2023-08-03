@@ -16,7 +16,7 @@ export const BookBanner = () => (
           alt="Banner"
           src="/png/book/banner.png"
           fill
-          objectFit="fill"
+          priority
         />
         <StyledText>
           <Text>Book An Appointment With Our Groom Specialist Today!</Text>

@@ -1,4 +1,4 @@
-import { extractStyleColor } from '@/app/shared/extractStyleColor';
+import { extractStyleColor } from '@/app/shared/utils';
 import { css, styled } from 'styled-components';
 
 type StyledInputProps = {

@@ -1,4 +1,4 @@
-import { extractStyleColor } from '@/app/shared/extractStyleColor';
+import { extractStyleColor } from '@/app/shared/utils';
 import { styled } from 'styled-components';
 
 export const StyledContainer = styled.div``;

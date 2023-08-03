@@ -32,7 +32,7 @@ export const Enumeration = ({ heading, items }: EnumerationProps) => {
       </StyledHeading>
       <StyledList>
         {items.map(item => (
-          <StyledListItem>
+          <StyledListItem key={item}>
             <StyledText>
               <Text>{item}</Text>
             </StyledText>
