@@ -12,6 +12,14 @@ const nextConfig = {
 
     return config;
   },
+  images: {
+    remotePatterns: [
+      {
+        protocol: 'https',
+        hostname: 'api-ninjas.com',
+      },
+    ],
+  },
   reactStrictMode: true,
   swcMinify: true,
   compiler: {
