@@ -38,9 +38,9 @@ export const BookFormResult = ({ items, onConfirm }: Props) => {
                   {key.toLowerCase()}:{' '}
                   {key === 'time'
                     ? value
-                      .split('')
-                      .map(t => BOOK_TIMES.find(({ id }) => id === +t)?.text)
-                      .join(', ')
+                        .split('')
+                        .map(t => BOOK_TIMES.find(({ id }) => id === +t)?.text)
+                        .join(', ')
                     : value}
                 </Text>
               )}
@@ -49,7 +49,7 @@ export const BookFormResult = ({ items, onConfirm }: Props) => {
         </StyledList>
 
         <StyledConfirmationButtonContainer>
-          <Button onClick={handleConfirmResult}>
+          <Button data_cy="button-confirm" onClick={handleConfirmResult}>
             <Text>Confirm</Text>
           </Button>
         </StyledConfirmationButtonContainer>

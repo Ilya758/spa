@@ -43,19 +43,20 @@ export const BookForm = () => {
     handleToggleCheckbox,
     handleSubmitForm,
   } = useForm<IBookFormSchema>(INITIAL_FORM_STATE);
-  const {
-    email, firstName, lastName, phone, message
-  } = fields;
+  const { email, firstName, lastName, phone, message } = fields;
 
-  const handleToggleCheckboxTime = (name: keyof IBookFormSchema, id: string) => (): void => {
-    handleToggleCheckbox(name, id);
-  };
+  const handleToggleCheckboxTime =
+    (name: keyof IBookFormSchema, id: string) => (): void => {
+      handleToggleCheckbox(name, id);
+    };
 
-  const handleChangeInputValue = (key: keyof IBookFormSchema) => ({
-    target: { value },
-  }: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>): void => {
-    handleChangeValue(key, value);
-  };
+  const handleChangeInputValue =
+    (key: keyof IBookFormSchema) =>
+    ({
+      target: { value },
+    }: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>): void => {
+      handleChangeValue(key, value);
+    };
 
   const handleChangeDatePickerDate = (date: string): void => {
     handleChangeValue('date', date);
@@ -91,6 +92,7 @@ export const BookForm = () => {
                   <Col span={12}>
                     <StyledInputContainer>
                       <Input
+                        data_cy="firstName"
                         error={errors.firstName}
                         name="firstName"
                         onChange={handleChangeInputValue('firstName')}
@@ -102,6 +104,7 @@ export const BookForm = () => {
                   <Col span={12}>
                     <StyledInputContainer>
                       <Input
+                        data_cy="lastName"
                         error={errors.lastName}
                         name="lastName"
                         onChange={handleChangeInputValue('lastName')}
@@ -113,6 +116,7 @@ export const BookForm = () => {
                   <Col span={12}>
                     <StyledInputContainer>
                       <Input
+                        data_cy="email"
                         error={errors.email}
                         name="email"
                         onChange={handleChangeInputValue('email')}
@@ -125,6 +129,7 @@ export const BookForm = () => {
                   <Col span={12}>
                     <StyledInputContainer>
                       <Input
+                        data_cy="phone"
                         error={errors.phone}
                         name="phone"
                         onChange={handleChangeInputValue('phone')}
@@ -216,7 +221,9 @@ export const BookForm = () => {
             <Col span={16}>
               <StyledButtonContainer>
                 <PayPalButtons style={{ layout: 'horizontal' }} />
-                <Button type="submit">Book Appointment</Button>
+                <Button data_cy="button-submit" type="submit">
+                  Book Appointment
+                </Button>
               </StyledButtonContainer>
             </Col>
           </Row>

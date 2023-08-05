@@ -3,6 +3,11 @@ import { StyledButton } from './Button.styled';
 
 export type ButtonProps = {
   /**
+   * Data-atribute for querying in testing
+   */
+  data_cy?: string;
+
+  /**
    * Button content you want provide to
    */
   children: React.ReactNode;
@@ -30,6 +35,7 @@ export type ButtonProps = {
 
 export const Button = ({
   children,
+  data_cy,
   loading,
   height,
   width,
@@ -39,6 +45,7 @@ export const Button = ({
   return (
     <StyledButton
       {...props}
+      data-cy={data_cy}
       $loading={loading}
       $height={height}
       $width={width}

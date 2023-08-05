@@ -3,6 +3,11 @@ import { StyledIconButton } from './IconButton.styled';
 
 export type IconButtonProps = {
   /**
+   * Data-atribute for querying in testing
+   */
+  data_cy?: string;
+
+  /**
    * Custom icon
    */
   icon: React.ReactNode;
@@ -27,6 +32,7 @@ export type IconButtonProps = {
  * Icon-button, that's a part of a datepicker.
  */
 export const IconButton = ({
+  data_cy,
   icon,
   height,
   width,
@@ -34,6 +40,7 @@ export const IconButton = ({
 }: IconButtonProps) => {
   return (
     <StyledIconButton
+      data-cy={data_cy}
       onClick={onClick}
       $height={height}
       $width={width}

@@ -10,6 +10,11 @@ export type InputProps = {
   borderColor?: string;
 
   /**
+   * Data-atribute for querying in testing
+   */
+  data_cy?: string;
+
+  /**
    * Disable all manipulation with control
    */
   disabled?: boolean;
@@ -60,6 +65,7 @@ export type InputProps = {
  */
 export const Input = ({
   borderColor,
+  data_cy,
   disabled,
   error,
   height,
@@ -78,6 +84,7 @@ export const Input = ({
     $width={width}
   >
     <input
+      data-cy={data_cy}
       disabled={disabled}
       name={name}
       type={type}

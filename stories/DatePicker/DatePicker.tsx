@@ -67,11 +67,13 @@ export const DatePicker = ({ error, onChange }: DatePickerProps) => {
 
         <StyledDatePaginator>
           <IconButton
+            data_cy="button-prev"
             onClick={handleChangeDate(DatePickerCellType.Prev)}
             icon={<Prev />}
           />
           <Text>{parseDate(date)}</Text>
           <IconButton
+            data_cy="button-next"
             onClick={handleChangeDate(DatePickerCellType.Next)}
             icon={<Next />}
           />
