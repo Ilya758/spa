@@ -16,6 +16,16 @@
         "Search": "Search",
         "TextAreaMessage": "Your message goes here ...",
         "TextAreaBook": "Any special requests for your pet(s)..."
+      },
+      "Errors": {
+        "Required": "Field is required",
+        "FirstName": "FirstName must be at least 3 symbols",
+        "EmailRequired": "Email is required",
+        "EmailIsNotValid": "Email must be valid",
+        "Time": "Time is required",
+        "Date": "Date is required",
+        "Phone": "Phone is not correct",
+        "Message": "Please provide a message with at least 10 symbols"
       }
     }
   },

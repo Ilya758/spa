@@ -26,30 +26,21 @@ export const BOOK_TIMES: IBookTime[] = [
 ];
 
 export const BOOK_FORM_SCHEMA = yup.object({
-  firstName: yup
-    .string()
-    .required()
-    .min(3, 'FirstName must be at least 3 symbols'),
+  firstName: yup.string().required().min(3, 'FirstName'),
   lastName: yup.string().optional(),
-  email: yup
-    .string()
-    .required('Email is required')
-    .email('Email must be valid'),
-  time: yup.string().required('Time is required'),
-  date: yup.string().required('Date is required'),
+  email: yup.string().required('EmailRequired').email('EmailIsNotValid'),
+  time: yup.string().required('Time'),
+  date: yup.string().required('Date'),
   phone: yup
     .string()
     .required()
     .matches(
       /^((\\+[1-9]{1,4}[ \\-]*)|(\\([0-9]{2,3}\\)[ \\-]*)|([0-9]{2,4})[ \\-]*)*?[0-9]{3,4}?[ \\-]*[0-9]{3,4}?$/,
       {
-        message: 'Phone is not correct',
+        message: 'Phone',
       }
     ),
-  message: yup
-    .string()
-    .required()
-    .min(10, 'Please provide a message with at least 10 symbols'),
+  message: yup.string().required().min(10, 'Message'),
 });
 
 export const INITIAL_FORM_STATE: BaseForm<IBookFormSchema> = {

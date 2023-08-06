@@ -21,6 +21,7 @@ import { useTranslations } from 'next-intl';
  */
 export const ContactForm = () => {
   const t = useTranslations('Common');
+  const errorTranslations = useTranslations('Common.Inputs.Errors');
   const inputPlaceholdersTranslations = useTranslations(
     'Common.Inputs.Placeholders'
   );
@@ -59,7 +60,7 @@ export const ContactForm = () => {
           <StyledControlContainer>
             <Input
               disabled={isSubmitting}
-              error={errors.firstName}
+              error={errors.firstName && errorTranslations(errors.firstName)}
               onChange={handleChangeInputValue('firstName')}
               name="firstName"
               placeholder={inputPlaceholdersTranslations('FirstName')}
@@ -82,7 +83,7 @@ export const ContactForm = () => {
           <StyledControlContainer>
             <Input
               disabled={isSubmitting}
-              error={errors.email}
+              error={errors.email && errorTranslations(errors.email)}
               onChange={handleChangeInputValue('email')}
               name="email"
               placeholder={inputPlaceholdersTranslations('Email')}
@@ -94,7 +95,7 @@ export const ContactForm = () => {
           <StyledControlContainer>
             <Input
               disabled={isSubmitting}
-              error={errors.phone}
+              error={errors.phone && errorTranslations(errors.phone)}
               onChange={handleChangeInputValue('phone')}
               name="phone"
               placeholder={inputPlaceholdersTranslations('Phone')}
@@ -106,7 +107,7 @@ export const ContactForm = () => {
           <StyledControlContainer>
             <TextArea
               disabled={isSubmitting}
-              error={errors.message}
+              error={errors.message && errorTranslations(errors.message)}
               onChange={handleChangeInputValue('message')}
               name="message"
               placeholder={inputPlaceholdersTranslations('TextAreaMessage')}

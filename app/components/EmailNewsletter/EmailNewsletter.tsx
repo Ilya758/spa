@@ -29,6 +29,7 @@ import { useTranslations } from 'next-intl';
 
 export const EmailNewsletter = () => {
   const t = useTranslations('Home.EmailNewsLetter');
+  const errorTranslations = useTranslations('Common.Inputs.Errors');
   const inputTranslations = useTranslations('Common.Inputs.Placeholders');
   const buttonTranslations = useTranslations('Common.Buttons.Text');
   const { errors, fields, isSubmitting, handleChangeValue, handleSubmitForm } =
@@ -83,7 +84,7 @@ export const EmailNewsletter = () => {
                 <StyledEmailInputContainer>
                   <Input
                     disabled={isSubmitting}
-                    error={errors.email}
+                    error={errors.email && errorTranslations(errors.email)}
                     name="email"
                     onChange={handleChangeEmail}
                     placeholder={inputTranslations('Email')}

@@ -1,10 +1,12 @@
+import { getMediaQuery } from '@/app/shared/styles/getMediaQuery/getMediaQuery';
 import { styled } from 'styled-components';
 
 export const StyledContainer = styled.header``;
 
 export const StyledContent = styled.div`
   display: flex;
-  justify-content: center;
+  justify-content: space-around;
+  width: 100%;
   position: relative;
   margin: 34px 0;
 `;
@@ -20,7 +22,6 @@ export const StyledHeaderLinkList = styled.ul`
   width: 100%;
   align-items: center;
   justify-content: space-between;
-  column-gap: 58px;
   margin-left: 152px;
   max-width: 80%;
 

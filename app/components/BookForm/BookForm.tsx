@@ -36,8 +36,9 @@ import { IBookFormSchema } from './models';
 import { useTranslations } from 'next-intl';
 
 export const BookForm = () => {
-  const buttonTranslations = useTranslations('Common.Buttons.Text');
   const t = useTranslations('Book.Form');
+  const errorTranslations = useTranslations('Common.Inputs.Errors');
+  const buttonTranslations = useTranslations('Common.Buttons.Text');
   const checkboxesTranslations = useTranslations('Book.Form.Checkboxes.Pairs');
   const inputTranslations = useTranslations('Common.Inputs.Placeholders');
   const addressTranslations = useTranslations('Book.Form.Enumeration.Address');
@@ -102,7 +103,10 @@ export const BookForm = () => {
                     <StyledInputContainer>
                       <Input
                         data_cy="firstName"
-                        error={errors.firstName}
+                        error={
+                          errors.firstName &&
+                          errorTranslations(errors.firstName)
+                        }
                         name="firstName"
                         onChange={handleChangeInputValue('firstName')}
                         placeholder={inputTranslations('FirstName')}
@@ -114,7 +118,9 @@ export const BookForm = () => {
                     <StyledInputContainer>
                       <Input
                         data_cy="lastName"
-                        error={errors.lastName}
+                        error={
+                          errors.lastName && errorTranslations(errors.lastName)
+                        }
                         name="lastName"
                         onChange={handleChangeInputValue('lastName')}
                         placeholder={inputTranslations('LastName')}
@@ -126,7 +132,7 @@ export const BookForm = () => {
                     <StyledInputContainer>
                       <Input
                         data_cy="email"
-                        error={errors.email}
+                        error={errors.email && errorTranslations(errors.email)}
                         name="email"
                         onChange={handleChangeInputValue('email')}
                         type="email"
@@ -139,7 +145,7 @@ export const BookForm = () => {
                     <StyledInputContainer>
                       <Input
                         data_cy="phone"
-                        error={errors.phone}
+                        error={errors.phone && errorTranslations(errors.phone)}
                         name="phone"
                         onChange={handleChangeInputValue('phone')}
                         placeholder={inputTranslations('Phone')}
@@ -174,14 +180,14 @@ export const BookForm = () => {
                       ))}
                       {errors.time && (
                         <StyledError>
-                          <Text>{errors.time}</Text>
+                          <Text>{errorTranslations(errors.time)}</Text>
                         </StyledError>
                       )}
                     </StyledCheckboxesList>
                   </Col>
                   <Col span={12}>
                     <DatePicker
-                      error={errors.date}
+                      error={errors.date && errorTranslations(errors.date)}
                       onChange={handleChangeDatePickerDate}
                     />
                   </Col>
@@ -216,7 +222,7 @@ export const BookForm = () => {
             <Col span={16}>
               <StyledTextAreaContainer>
                 <TextArea
-                  error={errors.message}
+                  error={errors.message && errorTranslations(errors.message)}
                   name="message"
                   height={80}
                   onChange={handleChangeInputValue('message')}

@@ -3,10 +3,7 @@ import * as yup from 'yup';
 import { IEmailNewsletterSchema } from './models';
 
 export const EMAIL_SCHEMA = yup.object({
-  email: yup
-    .string()
-    .required('Field is required')
-    .email('Email must be valid'),
+  email: yup.string().required('Required').email('EmailIsNotValid'),
 });
 
 export const INITIAL_FORM_STATE: BaseForm<IEmailNewsletterSchema> = {

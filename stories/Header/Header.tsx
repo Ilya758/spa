@@ -8,11 +8,17 @@ import {
   StyledLogo,
 } from './Header.styled';
 import { PATHS } from './constants';
+import Link from 'next/link';
+import { Text } from '../Text';
+import { useRouter } from 'next/router';
+import { usePathname } from 'next/navigation';
+import { extractPath } from './helpers';
 
 export type HeaderProps = {};
 
 export const Header = ({}: HeaderProps) => {
   const t = useTranslations('Header.Links');
+  const path = extractPath(usePathname());
 
   return (
     <StyledContainer>
@@ -28,6 +34,12 @@ export const Header = ({}: HeaderProps) => {
               </HeaderLink>
             </li>
           ))}
+          <HeaderLink color="charcoal" href={`../en-US${path}`}>
+            <Text>EN</Text>
+          </HeaderLink>
+          <HeaderLink color="charcoal" href={`../ru-RU${path}`}>
+            <Text>RU</Text>
+          </HeaderLink>
         </StyledHeaderLinkList>
       </StyledContent>
     </StyledContainer>
