@@ -1,0 +1,197 @@
+{
+  "Common": {
+    "Buttons": {
+      "Text": {
+        "Book": "Book Appointment",
+        "SignUp": "Sign up",
+        "Submit": "Submit"
+      }
+    },
+    "Inputs": {
+      "Placeholders": {
+        "FirstName": "First name",
+        "LastName": "Last name",
+        "Phone": "Phone number",
+        "Email": "Email",
+        "Search": "Search",
+        "TextAreaMessage": "Your message goes here ...",
+        "TextAreaBook": "Any special requests for your pet(s)..."
+      }
+    }
+  },
+  "Header": {
+    "Links": {
+      "Home": "Home",
+      "Info": "Info",
+      "Spa Services": "Spa Services",
+      "Book Appointment": "Book Appointment",
+      "Blog": "Blog",
+      "About Us": "About Us",
+      "Contact Us": "Contact Us"
+    }
+  },
+  "Discount": {
+    "Text": "Get 20% OFF When You Book A Spa Day For Your Animal Today!"
+  },
+  "Banner": {
+    "Title": "Your dog running amok in the dirt?",
+    "Text": "Book your doggy spa day!"
+  },
+  "Home": {
+    "EmailNewsLetter": {
+      "Title": "Sign Up to Bark Newsletter",
+      "Text": "Get 10% Off Your First Spa Treatment",
+      "Tip": "*By completing this form you are signing up to receive our emails and can unsubscribe at any time."
+    },
+    "Gallery": {
+      "Collars": {
+        "ActionButtonText": "See More Dog Collars",
+        "Heading": "Dog Collars"
+      },
+      "CarryOns": {
+        "ActionButtonText": "See More Carry Ons",
+        "Heading": "Animal Carry Ons"
+      }
+    }
+  },
+  "Footer": {
+    "Headings": {
+      "CustomerService": "Customer Service",
+      "Subscribe": "Subscribe to our Newsletter",
+      "Navigation": "Navigation",
+      "Connect": "Connect With Us On Social Media"
+    },
+    "CustomerLinks": {
+      "Blog": "Blog",
+      "Cancellations": "Cancellations",
+      "Track": "Track Your Animal",
+      "Annual": "Luxe’s Annual Spa Day 2021",
+      "Payment": "Payment Options"
+    },
+    "Navigation": {
+      "Home": "Home",
+      "About Us": "About Us",
+      "Contact Us": "Contact Us",
+      "FAQs": "FAQs",
+      "Help": "Help with navigation"
+    },
+    "Cookies": {
+      "Policy": "Cookie policy",
+      "Settings": "Cookies Settings"
+    },
+    "Copywright": {
+      "Text": "Copyright 2021 Luxe Animal Spa, LLC. All rights reserved."
+    },
+    "Terms": {
+      "Terms": "Terms",
+      "Privacy": "Privacy",
+      "Security": "Security"
+    }
+  },
+  "InfoPage": {
+    "Heading": "INFO DOG",
+    "Text": {
+      "NoMatch": "There is no matching",
+      "Error": "There is something went wrong"
+    },
+    "DogInfo": {
+      "Energy": "Energy",
+      "Expectancy": "Min life expectancy",
+      "Strangers": "Good with strangers",
+      "Other": "Good with other dogs"
+    }
+  },
+  "SpaServices": {
+    "Heading": "Spa Services",
+    "InfoBlocks": {
+      "Treatment": {
+        "Heading": "Dog or Cat Full Spa Treatment",
+        "Text": "Bath, massage, full grooming of hair and nails(comes with a take home bath kit and animal treats)."
+      },
+      "Massage": {
+        "Heading": "Dog or Cat Body Massage",
+        "Text": "Massaging of the paws, thighs, head and of course, behind the ears (comes with animal treats)."
+      },
+      "Dogs": {
+        "Heading": "Doggy Facial and Fur Cleanse Treatment",
+        "Text": "Dogs receive a facial with our vegan, cruelty free face products and cleansing of any dirt left hiding in their beautiful fur (comes with a take home face products and animal treats)."
+      },
+      "Cats": {
+        "Heading": "Cat Facial and Fur Cleanse Treatment",
+        "Text": "Cat receives a facial with our vegan, cruelty free face products and cleansing of any dirt left hidding in their fur (comes with a take home face products and animal treats)."
+      },
+      "Retreat": {
+        "Heading": "Cat and Dog Swim Spa Retreat",
+        "Text": "Take your animal on an amazing journey retreat in the woods with a scratch proof tent, feline repellant protector and sticks galore (for dogs, of course). There is a sauna that is for the animal owners and a smaller bath for your pets (comes with a cute animal raincoat and boots)."
+      }
+    }
+  },
+  "Blog": {
+    "Headings": {
+      "Article": "Rex, The Dog Who Never Stops Playing ... Ever",
+      "Heading": "The Bark Chronicles",
+      "Subheading": "Where To Read All About The Bark!"
+    },
+    "Text": {
+      "Top": "Sometimes it is difficult to get dogs interested in the toys you buy for them. .. Luckily for Rex, everything he sees is a potential toy for him! Never let him around your valuables or any socks. He will steal them and you will never see them again...",
+      "Bottom": "One day, we started noticing Rex was ripping apart all of our sheets when he was bored  except for this blanket over here. Rex decided to spare this ugly white blanket that my  grandmother gave me from her war days. We never threw it away because we felt bad.  Seeing Rex sleep on this blanket made us  happy. At least someone was using this  blanket, even if we had to rebuy brand new sheets because we have such an amazing dog. We love you Rex."
+    }
+  },
+  "AboutUs": {
+    "Headings": {
+      "Article": "Rex, The Dog Who Never Stops Playing ... Ever",
+      "Heading": "About Us",
+      "Subheading": "Our Owners Love Dogs and Cats Only"
+    },
+    "Text": {
+      "Top": "Here at Luxe Animal Spa we aim to provide you with the best service possible for both you and your pet! We pride ourselves in offering a true first-class experience. Our grooming equipment is top quality.  We use only the most trusted brands in the industry which provides a beautiful, calming, and safe salon experience for your pets.",
+      "Bottom": "All animals deserve a special spa pampering treatment, but mostly cats and dogs. Luxe Animal Spa offers the best spa treatments to leave your pets feeling amazing! We are the first in Canada to offer spa treatments for cats and dogs. This is unheard of in many places so come, bring your amazing cat or dog and let us make their spa experience something they will never forget!"
+    }
+  },
+  "ContactUs": {
+    "Heading": "Contact",
+    "Text": {
+      "Prefix": "For customer service inquiries, please email us at",
+      "Postfix": "For spa inquiries, please include your animal’s name for faster service. For your protection, please do not include your credit card or banking information details in your email."
+    }
+  },
+  "Book": {
+    "Heading": "Book An Appointment With Our Groom Specialist Today!",
+    "Form": {
+      "Heading": "Enter your information here",
+      "Checkboxes": {
+        "Heading": "Choose a timeslot",
+        "Pairs": {
+          "1": "11 am - 12 pm",
+          "2": "12 pm - 1 pm",
+          "3": "1 pm - 2 pm",
+          "4": "3 pm - 4 pm",
+          "5": "4 pm - 5pm"
+        }
+      },
+      "Enumeration": {
+        "Address": {
+          "Heading": "Our Address",
+          "Items": {
+            "1": "Luxe Animal Spa 80 Smithe St Vancouver, BC V6B 1M7"
+          }
+        },
+        "Operation": {
+          "Heading": "Hours of Operation",
+          "Items": {
+            "1": "Sunday - Closed",
+            "2": "Monday 10 a.m.-5:30 p.m.",
+            "3": "Tuesday 10 a.m.-5:30 p.m.",
+            "4": "Wednesday 10 a.m.-5:30 p.m.",
+            "5": "Thursday 10 a.m.-5:30 p.m.",
+            "6": "Friday 10 a.m.-5:30 p.m.",
+            "7": "Saturday 10 a.m.-5:30 p.m."
+          }
+        }
+      }
+    }
+  },
+  "DatePicker": {
+    "Heading": "Select dates"
+  }
+}

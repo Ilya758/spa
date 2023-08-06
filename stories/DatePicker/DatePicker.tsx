@@ -13,6 +13,8 @@ import Next from '@/public/svg/next.svg';
 import { createDatePickerGrid, parseDate } from './utils';
 import { DAYS, DatePickerCellType } from './constants';
 import { useDatePicker } from './hooks/useDatePicker';
+import { useTranslations } from 'next-intl';
+import { useRouter } from 'next/router';
 
 export type DatePickerProps = {
   /**
@@ -31,6 +33,7 @@ export type DatePickerProps = {
  */
 export const DatePicker = ({ error, onChange }: DatePickerProps) => {
   const { date, selectedDay, updateState } = useDatePicker();
+  const t = useTranslations('DatePicker');
 
   const handleChangeDate =
     (type: DatePickerCellType, value = 0) =>
@@ -63,7 +66,7 @@ export const DatePicker = ({ error, onChange }: DatePickerProps) => {
   return (
     <StyledDatePickerContainer $error={error}>
       <StyledDatePickerControls>
-        <Text>Select dates</Text>
+        <Text>{t('Heading')}</Text>
 
         <StyledDatePaginator>
           <IconButton

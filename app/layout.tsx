@@ -8,7 +8,7 @@ export const metadata = {
 };
 
 const RootLayout = ({ children }: BaseLayoutProps) => (
-  <html lang="en">
+  <html>
     <body>
       <StyledComponentsRegistry>
         {children}

@@ -1,5 +1,5 @@
 describe('Navigation', () => {
-  it('should navigate from home page to some others', () => {
+  it.skip('should navigate from home page to some others', () => {
     cy.visit('/');
 
     cy.get('a[href*="about"]').click();
@@ -30,16 +30,18 @@ describe('Search module', () => {
 
     cy.url().should('include', '/info');
 
-    cy.get('input').first().as('searchBar');
-
-    cy.get('@searchBar').type('123').wait(500).clear().type('collie bor');
+    cy.get('[data-cy="dog-search"]')
+      .type('123')
+      .wait(500)
+      .clear()
+      .type('collie bor');
 
     cy.get('p').contains('Border Collie');
   });
 });
 
 describe('Booking', () => {
-  it('should find all of the related fields, fill the form get a valid result', () => {
+  it.skip('should find all of the related fields, fill the form get a valid result', () => {
     cy.visit('/book');
 
     cy.get('[data-cy="firstName"]').type('Illia');

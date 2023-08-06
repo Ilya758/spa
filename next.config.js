@@ -28,10 +28,20 @@ const nextConfig = {
   experimental: {
     serverActions: true,
   },
-  redirects: () => [
+  redirects: async () => [
     {
       source: '/',
+      destination: `/en-US/home`,
+      permanent: true,
+    },
+    {
+      source: '/:lang(en|en-US)',
       destination: '/home',
+      permanent: true,
+    },
+    {
+      source: '/:lang(ru|ru-RU)',
+      destination: '/ru-RU/home',
       permanent: true,
     },
   ],

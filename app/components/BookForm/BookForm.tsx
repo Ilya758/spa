@@ -33,8 +33,17 @@ import {
 import { BOOK_FORM_SCHEMA, BOOK_TIMES, INITIAL_FORM_STATE } from './constants';
 import { BookFormResult } from './BookFormResult';
 import { IBookFormSchema } from './models';
+import { useTranslations } from 'next-intl';
 
 export const BookForm = () => {
+  const buttonTranslations = useTranslations('Common.Buttons.Text');
+  const t = useTranslations('Book.Form');
+  const checkboxesTranslations = useTranslations('Book.Form.Checkboxes.Pairs');
+  const inputTranslations = useTranslations('Common.Inputs.Placeholders');
+  const addressTranslations = useTranslations('Book.Form.Enumeration.Address');
+  const operationTranslations = useTranslations(
+    'Book.Form.Enumeration.Operation'
+  );
   const [showModal, setShowModal] = useState(false);
   const {
     errors,
@@ -83,7 +92,7 @@ export const BookForm = () => {
       <StyledContent>
         <StyledForm noValidate onSubmit={handleSubmit}>
           <StyledHeading>
-            <Text>Enter your information here</Text>
+            <Text>{t('Heading')}</Text>
           </StyledHeading>
           <Row gutter={[0, 150]}>
             <Col span={16}>
@@ -96,7 +105,7 @@ export const BookForm = () => {
                         error={errors.firstName}
                         name="firstName"
                         onChange={handleChangeInputValue('firstName')}
-                        placeholder="First name"
+                        placeholder={inputTranslations('FirstName')}
                         value={firstName}
                       />
                     </StyledInputContainer>
@@ -108,7 +117,7 @@ export const BookForm = () => {
                         error={errors.lastName}
                         name="lastName"
                         onChange={handleChangeInputValue('lastName')}
-                        placeholder="Last name"
+                        placeholder={inputTranslations('LastName')}
                         value={lastName}
                       />
                     </StyledInputContainer>
@@ -121,7 +130,7 @@ export const BookForm = () => {
                         name="email"
                         onChange={handleChangeInputValue('email')}
                         type="email"
-                        placeholder="Email"
+                        placeholder={inputTranslations('Email')}
                         value={email}
                       />
                     </StyledInputContainer>
@@ -133,7 +142,7 @@ export const BookForm = () => {
                         error={errors.phone}
                         name="phone"
                         onChange={handleChangeInputValue('phone')}
-                        placeholder="Phone number"
+                        placeholder={inputTranslations('Phone')}
                         value={phone}
                       />
                     </StyledInputContainer>
@@ -141,7 +150,7 @@ export const BookForm = () => {
 
                   <Col span={12}>
                     <StyledDateTimeText>
-                      <Text>Choose a timeslot on Dec. 11th, 2021:</Text>
+                      <Text>{t('Checkboxes.Heading')}</Text>
                     </StyledDateTimeText>
 
                     <StyledCheckboxesList $error={errors.time}>
@@ -158,7 +167,7 @@ export const BookForm = () => {
                               />
                             </StyledCheckboxContainer>
                             <StyledLabelTextContainer>
-                              <Text>{text}</Text>
+                              <Text>{checkboxesTranslations(text)}</Text>
                             </StyledLabelTextContainer>
                           </Label>
                         </li>
@@ -184,24 +193,22 @@ export const BookForm = () => {
               <StyledInfoContainer>
                 <StyledAddressContainer>
                   <Enumeration
-                    heading="Our Address"
-                    items={[
-                      'Luxe Animal Spa 80 Smithe St Vancouver, BC V6B 1M7',
-                    ]}
+                    heading={addressTranslations('Heading')}
+                    items={Array(1)
+                      .fill(null)
+                      .map((_, index) =>
+                        addressTranslations(`Items.${index + 1}`)
+                      )}
                   />
                 </StyledAddressContainer>
 
                 <Enumeration
-                  heading="Hours of Operation"
-                  items={[
-                    'Sunday - Closed',
-                    'Monday 10 a.m.-5:30 p.m.',
-                    'Tuesday 10 a.m.-5:30 p.m.',
-                    'Wednesday 10 a.m.-5:30 p.m.',
-                    'Thursday 10 a.m.-5:30 p.m.',
-                    'Friday 10 a.m.-5:30 p.m.',
-                    'Saturday 10 a.m.-5:30 p.m.',
-                  ]}
+                  heading={operationTranslations('Heading')}
+                  items={Array(7)
+                    .fill(null)
+                    .map((_, index) =>
+                      operationTranslations(`Items.${index + 1}`)
+                    )}
                 />
               </StyledInfoContainer>
             </Col>
@@ -213,7 +220,7 @@ export const BookForm = () => {
                   name="message"
                   height={80}
                   onChange={handleChangeInputValue('message')}
-                  placeholder="Any special requests for your pet(s)..."
+                  placeholder={inputTranslations('TextAreaBook')}
                   value={message}
                 />
               </StyledTextAreaContainer>
@@ -222,7 +229,7 @@ export const BookForm = () => {
               <StyledButtonContainer>
                 <PayPalButtons style={{ layout: 'horizontal' }} />
                 <Button data_cy="button-submit" type="submit">
-                  Book Appointment
+                  {buttonTranslations('Book')}
                 </Button>
               </StyledButtonContainer>
             </Col>

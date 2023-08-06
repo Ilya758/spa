@@ -1,3 +1,4 @@
+import { useTranslations } from 'next-intl';
 import { HeaderLink } from '../HeaderLink';
 import { Logo } from '../Logo';
 import {
@@ -11,6 +12,8 @@ import { PATHS } from './constants';
 export type HeaderProps = {};
 
 export const Header = ({}: HeaderProps) => {
+  const t = useTranslations('Header.Links');
+
   return (
     <StyledContainer>
       <StyledContent>
@@ -21,7 +24,7 @@ export const Header = ({}: HeaderProps) => {
           {PATHS.map(({ href, name }) => (
             <li key={href}>
               <HeaderLink color="charcoal" href={href}>
-                {name}
+                {t(name)}
               </HeaderLink>
             </li>
           ))}

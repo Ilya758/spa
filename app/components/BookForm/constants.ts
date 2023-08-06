@@ -5,23 +5,23 @@ import { IBookFormSchema, IBookTime } from './models';
 export const BOOK_TIMES: IBookTime[] = [
   {
     id: 1,
-    text: '11 am - 12 pm',
+    text: '1',
   },
   {
     id: 2,
-    text: '12 pm - 1 pm',
+    text: '2',
   },
   {
     id: 3,
-    text: '1 pm - 2 pm',
+    text: '3',
   },
   {
     id: 4,
-    text: '3 pm - 4 pm',
+    text: '4',
   },
   {
     id: 5,
-    text: '4 pm - 5pm',
+    text: '5',
   },
 ];
 

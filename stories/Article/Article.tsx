@@ -1,3 +1,4 @@
+import { useTranslations } from 'next-intl';
 import { Card } from '../Card/Card';
 import { Text } from '../Text';
 import {
@@ -37,6 +38,8 @@ export type ArticleProps = {
  * Basic component to display an article inside of a blog
  */
 export const Article = ({ heading, items }: ArticleProps) => {
+  const t = useTranslations();
+
   return (
     <StyledArticle>
       {heading && (
@@ -47,12 +50,12 @@ export const Article = ({ heading, items }: ArticleProps) => {
 
       <StyledList>
         {items.map(({ imageSrc, text }, index) => (
-          <StyledListItem $reversed={index % 2 !== 0}>
+          <StyledListItem key={index} $reversed={index % 2 !== 0}>
             <Card>
               <Image alt={text} width={615} height={551} src={imageSrc} />
             </Card>
             <StyledText>
-              <Text>{text}</Text>
+              <Text>{t(text)}</Text>
             </StyledText>
           </StyledListItem>
         ))}

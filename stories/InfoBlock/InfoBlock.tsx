@@ -1,3 +1,4 @@
+import { useTranslations } from 'next-intl';
 import { StyledContent, StyledHeading, StyledText } from './InfoBlock.styled';
 import { Text } from '@/stories/Text';
 
@@ -32,14 +33,16 @@ export const InfoBlock = ({
   text,
   textWidth,
 }: InfoBlockProps) => {
+  const t = useTranslations('SpaServices.InfoBlocks');
+
   return (
     <StyledContent>
       <StyledHeading>
-        <Text>{heading}</Text>
+        <Text>{t(heading)}</Text>
         <Text>{price}</Text>
       </StyledHeading>
       <StyledText $textWidth={textWidth}>
-        <Text>{text}</Text>
+        <Text>{t(text)}</Text>
       </StyledText>
     </StyledContent>
   );

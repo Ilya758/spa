@@ -1,3 +1,4 @@
+import { LocalStorageService } from '@/app/shared/services';
 import { DatePickerCellType } from './constants';
 import { DatePickerCell } from './models';
 
@@ -11,7 +12,9 @@ export const parseDate = (date: Date, withDay = false): string => {
     options.day = 'numeric';
   }
 
-  return date.toLocaleDateString('en', options);
+  const locale = JSON.parse(LocalStorageService.getItem('lang')) || 'en';
+
+  return date.toLocaleDateString(locale, options);
 };
 
 const getDateQueues = (firstDay: number, lastDay: number, daysCount = 7) => ({

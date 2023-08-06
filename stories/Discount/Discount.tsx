@@ -4,12 +4,15 @@ import {
   StyledDiscountContent,
 } from './Discount.styled';
 import { Text } from '../Text';
+import { useTranslations } from 'next-intl';
 
 export const Discount = () => {
+  const t = useTranslations('Discount');
+
   return (
     <StyledDiscountContainer>
       <StyledDiscountContent>
-        <Text>Get 20% OFF When You Book A Spa Day For Your Animal Today!</Text>
+        <Text>{t('Text')}</Text>
       </StyledDiscountContent>
     </StyledDiscountContainer>
   );

@@ -14,11 +14,16 @@ import { useForm } from '@/app/shared/hooks';
 import { CONTACT_FORM_SCHEMA, INITIAL_FORM_STATE } from './constants';
 import { EmailService } from '@/app/shared/services';
 import { IContactFormSchema } from './models';
+import { useTranslations } from 'next-intl';
 
 /**
  * Form for "contact-us" page
  */
 export const ContactForm = () => {
+  const t = useTranslations('Common');
+  const inputPlaceholdersTranslations = useTranslations(
+    'Common.Inputs.Placeholders'
+  );
   const { errors, fields, isSubmitting, handleChangeValue, handleSubmitForm } =
     useForm<IContactFormSchema>(INITIAL_FORM_STATE);
   const { email, firstName, lastName, phone, message } = fields;
@@ -57,7 +62,7 @@ export const ContactForm = () => {
               error={errors.firstName}
               onChange={handleChangeInputValue('firstName')}
               name="firstName"
-              placeholder="First Name"
+              placeholder={inputPlaceholdersTranslations('FirstName')}
               value={firstName}
             />
           </StyledControlContainer>
@@ -68,7 +73,7 @@ export const ContactForm = () => {
               disabled={isSubmitting}
               onChange={handleChangeInputValue('lastName')}
               name="lastName"
-              placeholder="Last name"
+              placeholder={inputPlaceholdersTranslations('LastName')}
               value={lastName}
             />
           </StyledControlContainer>
@@ -80,7 +85,7 @@ export const ContactForm = () => {
               error={errors.email}
               onChange={handleChangeInputValue('email')}
               name="email"
-              placeholder="Email"
+              placeholder={inputPlaceholdersTranslations('Email')}
               value={email}
             />
           </StyledControlContainer>
@@ -92,7 +97,7 @@ export const ContactForm = () => {
               error={errors.phone}
               onChange={handleChangeInputValue('phone')}
               name="phone"
-              placeholder="Phone number"
+              placeholder={inputPlaceholdersTranslations('Phone')}
               value={phone}
             />
           </StyledControlContainer>
@@ -104,7 +109,7 @@ export const ContactForm = () => {
               error={errors.message}
               onChange={handleChangeInputValue('message')}
               name="message"
-              placeholder="Your message goes here ..."
+              placeholder={inputPlaceholdersTranslations('TextAreaMessage')}
               value={message}
             />
           </StyledControlContainer>
@@ -113,7 +118,7 @@ export const ContactForm = () => {
 
       <StyledButtonContainer>
         <Button loading={isSubmitting} type="submit">
-          <Text>Submit</Text>
+          <Text>{t('Buttons.Text.Submit')}</Text>
         </Button>
       </StyledButtonContainer>
     </StyledForm>

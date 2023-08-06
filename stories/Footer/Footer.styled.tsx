@@ -1,19 +1,19 @@
 import { styled } from 'styled-components';
 
+export const StyledContainer = styled.footer`
+  background: ${({
+    theme: {
+      colors: { pink },
+    },
+  }) => pink};
+`;
+
 export const StyledHeading = styled.div`
   p {
     font-size: 32px;
     margin-bottom: 25px;
     font-weight: 700;
   }
-`;
-
-export const StyledContainer = styled.div`
-  background: ${({
-    theme: {
-      colors: { pink },
-    },
-  }) => pink};
 `;
 
 export const StyledOutline = styled.div`
@@ -68,6 +68,10 @@ export const StyledEmailContainer = styled.div`
   align-items: center;
   column-gap: 29px;
   width: 100%;
+
+  p {
+    color: inherit;
+  }
 
   div:first-child {
     flex: 1;

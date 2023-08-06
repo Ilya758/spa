@@ -2,33 +2,33 @@ import { InfoBlockProps } from '@/stories/InfoBlock/InfoBlock';
 
 export const SPA_SERVICES: InfoBlockProps[] = [
   {
-    heading: 'Dog or Cat Full Spa Treatment',
+    heading: 'Treatment.Heading',
     price: '$549',
-    text: 'Bath, massage, full grooming of hair and nails(comes with a take home bath kit and animal treats).',
+    text: 'Treatment.Text',
     textWidth: 55,
   },
   {
-    heading: 'Dog or Cat Body Massage ',
+    heading: 'Massage.Heading',
     price: '$149',
-    text: 'Massaging of the paws, thighs, head and of course, behind the ears (comes with animal treats).',
+    text: 'Massage.Text',
     textWidth: 65,
   },
   {
-    heading: 'Doggy Facial and Fur Cleanse Treatment',
+    heading: 'Dogs.Heading',
     price: '$269',
-    text: 'Dogs receive a facial with our vegan, cruelty free face products and cleansing of any dirt left hiding in their beautiful fur (comes with a take home face products and animal treats).',
+    text: 'Dogs.Text',
     textWidth: 80,
   },
   {
-    heading: 'Cat Facial and Fur Cleanse Treatment',
+    heading: 'Cats.Heading',
     price: '$219',
-    text: 'Cat receives a facial with our vegan, cruelty free face products and cleansing of any dirt left hidding in their fur (comes with a take home face products and animal treats).',
+    text: 'Cats.Text',
     textWidth: 80,
   },
   {
-    heading: 'Cat and Dog Swim Spa Retreat',
+    heading: 'Retreat.Heading',
     price: '$999',
-    text: 'Take your animal on an amazing journey retreat in the woods with a scratch proof tent, feline repellant protector and sticks galore (for dogs, of course). There is a sauna that is for the animal owners and a smaller bath for your pets (comes with a cute animal raincoat and boots).',
+    text: 'Retreat.Text',
     textWidth: 80,
   },
 ];

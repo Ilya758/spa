@@ -9,6 +9,7 @@ import {
   StyledHeading,
   StyledSubheading,
 } from './InfoPage.styled';
+import { useTranslations } from 'next-intl';
 
 type InfoPageProps = {
   articleHeading?: string;
@@ -22,18 +23,20 @@ export const InfoPage = ({
   heading,
   items,
   subheading,
-}: InfoPageProps) => (
-  <StyledContainer>
-    <StyledContent>
-      <StyledHeading>
-        <Text>{heading}</Text>
-      </StyledHeading>
+}: InfoPageProps) => {
+  const t = useTranslations();
 
-      <StyledSubheading>
-        <Subheading>{subheading}</Subheading>
-      </StyledSubheading>
-
-      <Article heading={articleHeading} items={items} />
-    </StyledContent>
-  </StyledContainer>
-);
+  return (
+    <StyledContainer>
+      <StyledContent>
+        <StyledHeading>
+          <Text>{t(heading)}</Text>
+        </StyledHeading>
+        <StyledSubheading>
+          <Subheading>{t(subheading)}</Subheading>
+        </StyledSubheading>
+        <Article heading={t(articleHeading)} items={items} />
+      </StyledContent>
+    </StyledContainer>
+  );
+};

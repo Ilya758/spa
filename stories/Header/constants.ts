@@ -3,7 +3,7 @@ import { IPath } from './models';
 export const PATHS: IPath[] = [
   {
     name: 'Home',
-    href: '../',
+    href: 'home',
   },
   {
     name: 'Info',

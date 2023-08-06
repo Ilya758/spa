@@ -7,17 +7,23 @@ import {
   StyledPictureContent,
   StyledPictureTitle,
   StyledSearchContainer,
-} from '@/app/(app)/info/page.styled';
+} from '@/app/(app)/[lang]/info/page.styled';
 import {
   StyledContainer,
   StyledContent,
   StyledHeading,
 } from './DogInfoPage.styled';
 import { useDogInfoPage } from './hooks/useDogInfoPage';
+import { useTranslations } from 'next-intl';
 
 export const DogInfoPage = () => {
+  const t = useTranslations('InfoPage');
+  const dogInfoTranslations = useTranslations('InfoPage.DogInfo');
   const { error, isLoading, result, searchValue, setSearchValue } =
     useDogInfoPage();
+  const inputPlaceholdersTranslations = useTranslations(
+    'Common.Inputs.Placeholders'
+  );
 
   const handleChangeSearchValue = ({
     target: { value },
@@ -29,14 +35,15 @@ export const DogInfoPage = () => {
     <StyledContainer>
       <StyledContent>
         <StyledHeading>
-          <Text>INFO DOG</Text>
+          <Text>{t('Heading')}</Text>
         </StyledHeading>
 
         <StyledSearchContainer>
           <Input
+            data_cy="dog-search"
             onChange={handleChangeSearchValue}
             width={337}
-            placeholder="Search"
+            placeholder={inputPlaceholdersTranslations('Search')}
             value={searchValue}
           />
         </StyledSearchContainer>
@@ -57,26 +64,39 @@ export const DogInfoPage = () => {
                 </StyledPictureTitle>
               </>
             ) : (
-              !error && <Text>There is no matching</Text>
+              !error && <Text>{t('Text.NoMatch')}</Text>
             )}
 
-            {error && <Text>There is something went wrong: {error}</Text>}
+            {error && (
+              <Text>
+                {t('Error')}: {error}
+              </Text>
+            )}
           </StyledPictureContent>
         </StyledPictureContainer>
 
         {result && (
           <StyledInfoContainer>
             <li>
-              <Text>Energy: {result.energy}</Text>
+              <Text>
+                {dogInfoTranslations('Energy')}: {result.energy}
+              </Text>
             </li>
             <li>
-              <Text>Min life expectancy: {result.min_life_expectancy}</Text>
+              <Text>
+                {dogInfoTranslations('Expectancy')}:{' '}
+                {result.min_life_expectancy}
+              </Text>
             </li>
             <li>
-              <Text>Good with strangers: {result.good_with_strangers}</Text>
+              <Text>
+                {dogInfoTranslations('Strangers')}: {result.good_with_strangers}
+              </Text>
             </li>
             <li>
-              <Text>Good with other dogs: {result.good_with_strangers}</Text>
+              <Text>
+                {dogInfoTranslations('Other')}: {result.good_with_strangers}
+              </Text>
             </li>
           </StyledInfoContainer>
         )}

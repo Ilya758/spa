@@ -9,29 +9,32 @@ import {
   StyledHeading,
   StyledText,
 } from './ContactUs.styled';
+import { useTranslations } from 'next-intl';
 
-export const ContactUs = () => (
-  <StyledContainer>
-    <StyledContent>
-      <StyledHeading>
-        <Text>Contact</Text>
-      </StyledHeading>
+export const ContactUs = () => {
+  const t = useTranslations('ContactUs');
 
-      <Divider width={592} />
+  return (
+    <StyledContainer>
+      <StyledContent>
+        <StyledHeading>
+          <Text>{t('Heading')}</Text>
+        </StyledHeading>
 
-      <StyledText>
-        <Text>
-          For customer service inquiries, please email us at{' '}
-          <Link href={'./'}>customerservice@luxeanimalspa.ca</Link>. For spa
-          inquiries, please include your animal’s name for faster service. For
-          your protection, please do not include your credit card or banking
-          information details in your email.
-        </Text>
-      </StyledText>
+        <Divider width={592} />
 
-      <StyledFormContainer>
-        <ContactForm />
-      </StyledFormContainer>
-    </StyledContent>
-  </StyledContainer>
-);
+        <StyledText>
+          <Text>
+            {t('Text.Prefix')}{' '}
+            <Link href={'./home'}>customerservice@luxeanimalspa.ca</Link>.{' '}
+            {t('Text.Postfix')}
+          </Text>
+        </StyledText>
+
+        <StyledFormContainer>
+          <ContactForm />
+        </StyledFormContainer>
+      </StyledContent>
+    </StyledContainer>
+  );
+};

@@ -8,23 +8,26 @@ import {
   StyledButtonContainer,
   StyledFloatableContainer,
 } from './Banner.styled';
+import { useTranslations } from 'next-intl';
 
-export const Banner = () => (
-  <StyledBannerContainer>
-    <StyledBanner>
-      <Image alt="Banner" src="/png/home/banner.png" fill objectFit="fill" />
-    </StyledBanner>
+export const Banner = () => {
+  const buttonTranslation = useTranslations('Common.Buttons.Text');
+  const t = useTranslations('Banner');
 
-    <StyledFloatableContainer>
-      <Text color="charcoal">Your dog running amok in the dirt?</Text>
-
-      <Text color="charcoal">Book your doggy spa day!</Text>
-
-      <StyledButtonContainer>
-        <Button>
-          <Link href={'book'}>Book Appointment</Link>
-        </Button>
-      </StyledButtonContainer>
-    </StyledFloatableContainer>
-  </StyledBannerContainer>
-);
+  return (
+    <StyledBannerContainer>
+      <StyledBanner>
+        <Image alt="Banner" src="/png/home/banner.png" fill priority />
+      </StyledBanner>
+      <StyledFloatableContainer>
+        <Text color="charcoal"> {t('Title')} </Text>
+        <Text color="charcoal">{t('Text')}</Text>
+        <StyledButtonContainer>
+          <Button>
+            <Link href={'book'}>{buttonTranslation('Book')}</Link>
+          </Button>
+        </StyledButtonContainer>
+      </StyledFloatableContainer>
+    </StyledBannerContainer>
+  );
+};

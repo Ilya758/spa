@@ -25,11 +25,14 @@ import {
 } from './EmailNewsletter.styled';
 import { EMAIL_SCHEMA, INITIAL_FORM_STATE } from './constants';
 import { IEmailNewsletterSchema } from './models';
+import { useTranslations } from 'next-intl';
 
 export const EmailNewsletter = () => {
-  const {
-    errors, fields, isSubmitting, handleChangeValue, handleSubmitForm
-  } = useForm<IEmailNewsletterSchema>(INITIAL_FORM_STATE);
+  const t = useTranslations('Home.EmailNewsLetter');
+  const inputTranslations = useTranslations('Common.Inputs.Placeholders');
+  const buttonTranslations = useTranslations('Common.Buttons.Text');
+  const { errors, fields, isSubmitting, handleChangeValue, handleSubmitForm } =
+    useForm<IEmailNewsletterSchema>(INITIAL_FORM_STATE);
   const { email } = fields;
   const form = useRef<HTMLFormElement>(null);
 
@@ -69,11 +72,11 @@ export const EmailNewsletter = () => {
           <StyledCardContent>
             <StyledActionContainer>
               <StyledHeading>
-                <Text.H4>Sign Up to Bark Newsletter</Text.H4>
+                <Text.H4>{t('Title')}</Text.H4>
               </StyledHeading>
 
               <StyledDiscountText>
-                <Text>Get 10% Off Your First Spa Treatment</Text>
+                <Text>{t('Text')}</Text>
               </StyledDiscountText>
 
               <form ref={form} onSubmit={handleSubmit}>
@@ -83,23 +86,20 @@ export const EmailNewsletter = () => {
                     error={errors.email}
                     name="email"
                     onChange={handleChangeEmail}
-                    placeholder="Email"
+                    placeholder={inputTranslations('Email')}
                     value={email}
                   />
                 </StyledEmailInputContainer>
 
                 <StyledEmailConfirmationButton>
                   <Button loading={isSubmitting} type="submit">
-                    <Text>Sign Up</Text>
+                    <Text>{buttonTranslations('SignUp')}</Text>
                   </Button>
                 </StyledEmailConfirmationButton>
               </form>
 
               <StyledEmailConfirmationTipText>
-                <Text>
-                  *By completing this form you are signing up to receive our
-                  emails and can unsubscribe at any time.
-                </Text>
+                <Text>{t('Tip')}</Text>
               </StyledEmailConfirmationTipText>
             </StyledActionContainer>
 

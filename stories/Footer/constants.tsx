@@ -15,15 +15,15 @@ export const FOOTER_PATHS: IPath[] = [
     href: 'info',
   },
   {
-    name: 'Track Your Animal',
+    name: 'Track',
     href: 'spa-services',
   },
   {
-    name: 'Luxe’s Annual Spa Day 2021',
+    name: 'Annual',
     href: 'book',
   },
   {
-    name: 'Payment Options',
+    name: 'Payment',
     href: 'blog',
   },
 ];
@@ -69,7 +69,7 @@ export const FOOTER_NAVIGATION_LINKS: IPath[] = [
     href: 'book',
   },
   {
-    name: 'Help with navigation',
+    name: 'Help',
     href: 'blog',
   },
 ];
@@ -77,7 +77,7 @@ export const FOOTER_NAVIGATION_LINKS: IPath[] = [
 export const FOOTER_TERMS_LINKS: IPath[] = [
   {
     name: 'Terms',
-    href: '../',
+    href: 'home',
   },
   {
     name: 'Privacy',
