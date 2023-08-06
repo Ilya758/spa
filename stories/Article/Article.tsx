@@ -52,7 +52,7 @@ export const Article = ({ heading, items }: ArticleProps) => {
         {items.map(({ imageSrc, text }, index) => (
           <StyledListItem key={index} $reversed={index % 2 !== 0}>
             <Card>
-              <Image alt={text} width={615} height={551} src={imageSrc} />
+              <Image alt={text} width={615} height={555} src={imageSrc} />
             </Card>
             <StyledText>
               <Text>{t(text)}</Text>

@@ -17,7 +17,13 @@ export const Banner = () => {
   return (
     <StyledBannerContainer>
       <StyledBanner>
-        <Image alt="Banner" src="/png/home/banner.png" fill priority />
+        <Image
+          sizes="100vw"
+          alt="Banner"
+          src="/png/home/banner.png"
+          fill
+          priority
+        />
       </StyledBanner>
       <StyledFloatableContainer>
         <Text color="charcoal"> {t('Title')} </Text>

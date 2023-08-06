@@ -23,11 +23,16 @@ export const StyledListItem = styled.li<{
 }>`
   display: flex;
   column-gap: 100px;
+  max-height: 561px;
 
   div {
     &:first-child {
       order: ${({ $reversed }) => Number($reversed)};
     }
+  }
+
+  img {
+    object-fit: cover;
   }
 `;
 
