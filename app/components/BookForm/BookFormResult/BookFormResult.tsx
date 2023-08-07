@@ -35,11 +35,16 @@ export const BookFormResult = ({ items, onConfirm }: Props) => {
             <StyledListItem key={key + index}>
               {value && (
                 <Text>
-                  {key.toLowerCase()}:{' '}
+                  {key[0].toUpperCase() + key.slice(1)}:{' '}
                   {key === 'time'
                     ? value
                         .split('')
-                        .map(t => BOOK_TIMES.find(({ id }) => id === +t)?.text)
+                        .map(
+                          t =>
+                            BOOK_TIMES.find(
+                              ({ id }) => id === +t
+                            )?.text.toLowerCase()
+                        )
                         .join(', ')
                     : value}
                 </Text>

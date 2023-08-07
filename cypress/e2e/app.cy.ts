@@ -1,5 +1,5 @@
 describe('Navigation', () => {
-  it.skip('should navigate from home page to some others', () => {
+  it('should navigate from home page to some others', () => {
     cy.visit('/');
 
     cy.get('a[href*="about"]').click();
@@ -41,7 +41,7 @@ describe('Search module', () => {
 });
 
 describe('Booking', () => {
-  it.skip('should find all of the related fields, fill the form get a valid result', () => {
+  it('should find all of the related fields, fill the form get a valid result', () => {
     cy.visit('/book');
 
     cy.get('[data-cy="firstName"]').type('Illia');

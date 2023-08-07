@@ -238,7 +238,9 @@ export const BookForm = () => {
             </Col>
             <Col span={16}>
               <StyledButtonContainer>
-                <PayPalButtons style={{ layout: 'horizontal' }} />
+                <PayPalButtons
+                  style={{ layout: 'horizontal', shape: 'pill', height: 43 }}
+                />
                 <Button data_cy="button-submit" type="submit">
                   {buttonTranslations('Book')}
                 </Button>

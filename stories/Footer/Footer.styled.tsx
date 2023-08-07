@@ -66,15 +66,23 @@ export const StyledEmailContainer = styled.div`
   display: flex;
   margin-bottom: 66px;
   align-items: center;
-  column-gap: 29px;
   width: 100%;
 
-  p {
-    color: inherit;
+  form {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    column-gap: 29px;
   }
 
   div:first-child {
     flex: 1;
+  }
+
+  button {
+    p {
+      color: inherit;
+    }
   }
 
   input {

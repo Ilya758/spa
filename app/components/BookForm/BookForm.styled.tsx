@@ -102,8 +102,12 @@ export const StyledAddressContainer = styled.div`
 
 export const StyledButtonContainer = styled.div`
   text-align: center;
+  display: flex;
+  justify-content: center;
+  column-gap: 20px;
 
   button {
+    height: 43px;
     width: 100%;
     max-width: 318px;
   }

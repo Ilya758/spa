@@ -30,17 +30,52 @@ import { Button } from '../Button';
 import { IconButton } from '../IconButton';
 import { FooterLink } from '../FooterLink';
 import { useTranslations } from 'next-intl';
+import { useForm } from '@/app/shared/hooks';
+import { IEmailNewsletterSchema } from '@/app/components/EmailNewsletter/models';
+import {
+  EMAIL_SCHEMA,
+  INITIAL_FORM_STATE,
+} from '@/app/components/EmailNewsletter/constants';
+import { EmailService } from '@/app/shared/services';
+import { useRef } from 'react';
 
 export type FooterProps = {};
 
 export const Footer = ({}: FooterProps) => {
   const t = useTranslations('Footer.Headings');
+  const errorTranslations = useTranslations('Common.Inputs.Errors');
+  const inputTranslations = useTranslations('Common.Inputs.Placeholders');
   const customerTranslations = useTranslations('Footer.CustomerLinks');
   const navigationTranslations = useTranslations('Footer.Navigation');
   const translateButtons = useTranslations('Common.Buttons.Text');
   const cookiesTranslations = useTranslations('Footer.Cookies');
   const copyTranslations = useTranslations('Footer.Copywright');
   const termsTranslations = useTranslations('Footer.Terms');
+  const { errors, fields, isSubmitting, handleChangeValue, handleSubmitForm } =
+    useForm<IEmailNewsletterSchema>(INITIAL_FORM_STATE);
+  const { email } = fields;
+  const form = useRef<HTMLFormElement>(null);
+
+  const handleChangeEmail = ({
+    target: { value },
+  }: React.ChangeEvent<HTMLInputElement>): void => {
+    handleChangeValue('email', value);
+  };
+
+  const handleSubmit = async (
+    event: React.FormEvent<HTMLFormElement>
+  ): Promise<void> => {
+    event.preventDefault();
+    handleSubmitForm({
+      validationSchema: EMAIL_SCHEMA,
+      fields,
+      onSuccess: async () => {
+        if (form.current) {
+          await EmailService.sendEmail(form.current, 'registration');
+        }
+      },
+    });
+  };
 
   return (
     <StyledContainer>
@@ -66,10 +101,24 @@ export const Footer = ({}: FooterProps) => {
               <Text>{t('Subscribe')}</Text>
             </StyledHeading>
             <StyledEmailContainer>
-              <Input placeholder="Email" type="email" />
-              <Button height={40} width={129}>
-                <Text>{translateButtons('Submit')}</Text>
-              </Button>
+              <form ref={form} onSubmit={handleSubmit}>
+                <Input
+                  disabled={isSubmitting}
+                  error={errors.email && errorTranslations(errors.email)}
+                  name="email"
+                  onChange={handleChangeEmail}
+                  placeholder={inputTranslations('Email')}
+                  value={email}
+                />
+                <Button
+                  height={40}
+                  width={129}
+                  loading={isSubmitting}
+                  type="submit"
+                >
+                  <Text>{translateButtons('Submit')}</Text>
+                </Button>
+              </form>
             </StyledEmailContainer>
             <StyledSocialContainer>
               <StyledHeading>

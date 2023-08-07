@@ -15,11 +15,7 @@ export const StyledHeading = styled.div`
 
 export const StyledList = styled.ul``;
 
-export const StyledListItem = styled.li`
-  p {
-    text-transform: capitalize;
-  }
-`;
+export const StyledListItem = styled.li``;
 
 export const StyledConfirmationButtonContainer = styled.div`
   margin-top: 20px;
