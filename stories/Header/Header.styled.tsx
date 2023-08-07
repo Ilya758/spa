@@ -1,4 +1,3 @@
-import { getMediaQuery } from '@/app/shared/styles/getMediaQuery/getMediaQuery';
 import { styled } from 'styled-components';
 
 export const StyledContainer = styled.header``;

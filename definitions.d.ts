@@ -7,5 +7,6 @@ declare namespace NodeJS {
     NEXT_PUBLIC_PAYPAL_CLIENT_ID: string;
     NEXT_PUBLIC_TYPESENSE_HOST: string;
     NEXT_PUBLIC_TYPESENSE_API_KEY: string;
+    NEXT_PUBLIC_MAPBOX_ACCESS_TOKEN: string;
   }
 }

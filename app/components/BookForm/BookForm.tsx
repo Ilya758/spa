@@ -28,12 +28,14 @@ import {
   StyledInfoContainer,
   StyledInputContainer,
   StyledLabelTextContainer,
+  StyledMapContainer,
   StyledTextAreaContainer,
 } from './BookForm.styled';
 import { BOOK_FORM_SCHEMA, BOOK_TIMES, INITIAL_FORM_STATE } from './constants';
 import { BookFormResult } from './BookFormResult';
 import { IBookFormSchema } from './models';
 import { useTranslations } from 'next-intl';
+import { useMap } from './hooks/useMap';
 
 export const BookForm = () => {
   const t = useTranslations('Book.Form');
@@ -54,6 +56,7 @@ export const BookForm = () => {
     handleSubmitForm,
   } = useForm<IBookFormSchema>(INITIAL_FORM_STATE);
   const { email, firstName, lastName, phone, message } = fields;
+  const { mapContainer } = useMap();
 
   const handleToggleCheckboxTime =
     (name: keyof IBookFormSchema, id: string) => (): void => {
@@ -195,7 +198,9 @@ export const BookForm = () => {
               </StyledFormContainer>
             </Col>
             <Col span={8}>
-              <Card>1</Card>
+              <Card>
+                <StyledMapContainer ref={mapContainer} />
+              </Card>
               <StyledInfoContainer>
                 <StyledAddressContainer>
                   <Enumeration
