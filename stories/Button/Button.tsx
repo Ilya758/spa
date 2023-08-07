@@ -33,6 +33,9 @@ export type ButtonProps = {
   onClick?: () => void;
 };
 
+/**
+ * Represents a simple button for user interactions
+ */
 export const Button = ({
   children,
   data_cy,

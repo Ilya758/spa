@@ -14,7 +14,6 @@ import { createDatePickerGrid, parseDate } from './utils';
 import { DAYS, DatePickerCellType } from './constants';
 import { useDatePicker } from './hooks/useDatePicker';
 import { useTranslations } from 'next-intl';
-import { useRouter } from 'next/router';
 
 export type DatePickerProps = {
   /**

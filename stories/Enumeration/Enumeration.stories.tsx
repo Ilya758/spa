@@ -13,6 +13,7 @@ type Story = StoryObj<typeof Enumeration>;
 
 export const Primary: Story = {
   args: {
-    heading: 'Some',
+    heading: 'Some items',
+    items: ['first', 'second'],
   },
 };

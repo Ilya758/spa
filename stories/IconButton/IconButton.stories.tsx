@@ -14,8 +14,8 @@ type Story = StoryObj<typeof IconButton>;
 
 export const Primary: Story = {
   args: {
-    width: 17,
-    height: 17,
-    icon: <Prev />,
+    width: 18,
+    height: 20,
+    icon: '+',
   },
 };

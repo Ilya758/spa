@@ -18,7 +18,7 @@ export type HeaderProps = {};
 
 export const Header = ({}: HeaderProps) => {
   const t = useTranslations('Header.Links');
-  const path = extractPath(usePathname());
+  const path = extractPath(usePathname() || 'en-US');
 
   return (
     <StyledContainer>

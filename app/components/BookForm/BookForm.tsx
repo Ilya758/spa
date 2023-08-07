@@ -3,7 +3,7 @@ import { Row } from '@/stories/Grid/Row';
 import { Col } from '@/stories/Grid/Col';
 import { Input } from '@/stories/Input';
 import { Checkbox } from '@/stories/Checkbox';
-import { Label } from '@/stories/Label/Label';
+import { Label } from '@/stories/Label';
 import { TextArea } from '@/stories/TextArea';
 import { Card } from '@/stories/Card/Card';
 import { Enumeration } from '@/stories/Enumeration';

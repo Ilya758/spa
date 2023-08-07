@@ -3,6 +3,8 @@ import { DatePickerCellType } from './constants';
 import { DatePickerCell } from './models';
 
 export const parseDate = (date: Date, withDay = false): string => {
+  const locale = JSON.parse(LocalStorageService.getItem('lang') || '"en"');
+
   const options: Intl.DateTimeFormatOptions = {
     year: 'numeric',
     month: 'long',
@@ -11,8 +13,6 @@ export const parseDate = (date: Date, withDay = false): string => {
   if (withDay) {
     options.day = 'numeric';
   }
-
-  const locale = JSON.parse(LocalStorageService.getItem('lang')) || 'en';
 
   return date.toLocaleDateString(locale, options);
 };
