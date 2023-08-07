@@ -1,5 +1,19 @@
 This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
 
+## Docker-compose
+
+If you want to start a dev-server with hot-reload in a container (detached), try
+
+```bash
+docker-compose up -d
+```
+
+To remove a container, use this command in the shell
+
+```bash
+docker-compose down
+```
+
 ## Getting Started
 
 First, run the development server:
