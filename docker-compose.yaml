@@ -10,3 +10,12 @@ services:
     volumes:
       - /app/node_modules
       - ./:/app
+    environment:
+      - NEXT_PUBLIC_API_KEY=sZeQhlF-EvGH3RK-Z
+      - NEXT_PUBLIC_EMAIL_REGISTRATION_SERVICE=gmail_service
+      - NEXT_PUBLIC_EMAIL_REGISTRATION_TEMPLATE=registration
+      - NEXT_PUBLIC_CONTACT_US_FORM_TEMPLATE=contact_form
+      - NEXT_PUBLIC_PAYPAL_CLIENT_ID=AfMbLlSZExfw8lmoVdqzwRIJSx-WXSJz1S7z0AoPUumIrVk54BlScoCalVt73BhlXbOIBQio2w6WDUvx
+      - NEXT_PUBLIC_TYPESENSE_HOST=y4z6hsibe2jq7mvfp-1.a1.typesense.net
+      - NEXT_PUBLIC_TYPESENSE_API_KEY=KS82AuZWMiRK39fCqVhOe0qOmkKCmLJ5
+      - NEXT_PUBLIC_MAPBOX_ACCESS_TOKEN=pk.eyJ1Ijoia3JhbGlzIiwiYSI6ImNsbDBpcTF1bTA0amczZmxrbG9pa3JoN2IifQ.AnDIC16yy3Upou-qYIRYiw
